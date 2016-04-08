@@ -5,15 +5,7 @@ function doQuery($query){
 	global $conn;
 	$result = mysqli_query($conn, $query);
 
-	if($result == TRUE)
-		return $result;
-/*	else if( mysqli_connect_errno())
-	    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-	    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-	else {
-	    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-	    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-	}*/
+	return $result;
 }
 
 function newLigue(){
@@ -102,20 +94,83 @@ function newPoint(){
 }
 
 function getAlignement(){
-	$table="Alignement";
 	$equipe = $_POST['equipe'];
 	$saison=$_POST['saison'];
-	$req = "SELECT Joueur.ID_Joueur FROM  WHERE ";
+	$req = "SELECT Joueur.ID_Joueur, Nom, Prenom, Numero_Chandail FROM Joueur, Alignement where Alignement.ID_Equipe=$idEquipe AND Alignement.ID_Saison=$idSaison";
 
-	doQuery($req);
+	$result = doQuery($req);
+	$row = mysqli_num_rows($result);
+	if($row > 0){
+		echo "{\"Alignement :\" : [";
+		while($ligne = mysqli_fetch_object($result)){
+			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\",  \"nom\" : \"$ligne->Nom\" \"numero\" : \"$ligne->Numero_Chandail\"}";
+			if(--$row > 0) echo ",";
+		}
+		echo "];}";
+	}
+	else
+		echo "No result found!";
+	mysql_free_result($result);
 }
 
 function getListEquipe(){
-	$table = "Equipe";
 	$idLigue=$_POST['idLigue'];
-	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe INNER JOIN Ligue ON Equipe.ID_Ligue=Ligue.ID_Ligue WHERE Nom_Ligue LIKE '%$idLigue%'";
+	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe INNER JOIN Ligue ON Equipe.ID_Ligue=Ligue.ID_Ligue WHERE ID_Ligue = $idLigue";
 
-	doQuery($req);
+	$result = doQuery($req);
+	$row = mysqli_num_rows($result);
+	if($row > 0){
+		echo "{\"Equipes\" : [";
+		while($ligne = mysqli_fetch_object($result)){
+			echo "{\"id\" : \"$ligne->ID_Equipe\", \"nom\" : \"$ligne->Nom_Equipe\"}";
+			if(--$row > 0) echo ",";
+		}
+		echo "];}";
+	}
+	else
+		echo "No result found!";
+	mysql_free_result($result);
+}
+
+function getListeLigue(){
+	$idGestionnaire=$_POST['idGestionnaire'];
+	if($idGestionnaire)
+		$req ="SELECT ID_Ligue, Nom_Ligue FROM Ligue WHERE ID_Gestionnaire = $idGestionnaire";
+	else
+		$req ="SELECT ID_Ligue, Nom_Ligue FROM Ligue";
+
+	$result = doQuery($req);
+
+	$row = mysqli_num_rows($result);
+	if($row > 0){
+		echo "{\"Ligues\" : [";
+		while($ligne = mysqli_fetch_object($result)){
+			echo "{\"id\" : \"$ligne->ID_Ligue\", \"nom\" : \"$ligne->Nom_Ligue\"}";
+			if(--$row > 0) echo ",";
+		}
+		echo "];}";
+	}
+	else
+		echo "No result found!";
+	mysql_free_result($result);
+}
+
+function getListeGestionnaire(){
+	$req ="SELECT ID_Joueur, Prenom, Nom FROM Joueur WHERE Gestionnaire = true";
+	$result = doQuery($req);
+
+	$row = mysqli_num_rows($result);
+	if($row > 0){
+		echo "{\"Gestionnaires\" : [";
+		while($ligne = mysqli_fetch_object($result)){
+			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\"}";
+			if(--$row > 0) echo ",";
+		}
+		echo "];}";
+	}
+	else
+		echo "No result found!";
+	mysql_free_result($result);
 }
 
 //Le controleur
@@ -141,6 +196,12 @@ switch ($action){
         break;
         case "newPoint" :
 	   newPoint();
+        break;
+        case "listeLigue" :
+		getListeLigue();
+        break;
+        case "listeGestionaires" :
+		getListeGestionnaire();
         break;
 }
 
