@@ -94,11 +94,12 @@ function newPoint(){
 }
 
 function getAlignement(){
-	$equipe = $_POST['equipe'];
-	$saison=$_POST['saison'];
+	$idEquipe = $_POST['idEquipe'];
+	$idSaison=$_POST['idSaison'];
 	$req = "SELECT Joueur.ID_Joueur, Nom, Prenom, Numero_Chandail FROM Joueur, Alignement where Alignement.ID_Equipe=$idEquipe AND Alignement.ID_Saison=$idSaison";
 
 	$result = doQuery($req);
+
 	$row = mysqli_num_rows($result);
 	if($row > 0){
 		echo "{\"Alignement :\" : [";
@@ -106,7 +107,7 @@ function getAlignement(){
 			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\",  \"nom\" : \"$ligne->Nom\" \"numero\" : \"$ligne->Numero_Chandail\"}";
 			if(--$row > 0) echo ",";
 		}
-		echo "];}";
+		echo "]}";
 	}
 	else
 		echo "No result found!";
@@ -118,6 +119,7 @@ function getListEquipe(){
 	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe INNER JOIN Ligue ON Equipe.ID_Ligue=Ligue.ID_Ligue WHERE ID_Ligue = $idLigue";
 
 	$result = doQuery($req);
+
 	$row = mysqli_num_rows($result);
 	if($row > 0){
 		echo "{\"Equipes\" : [";
@@ -125,7 +127,7 @@ function getListEquipe(){
 			echo "{\"id\" : \"$ligne->ID_Equipe\", \"nom\" : \"$ligne->Nom_Equipe\"}";
 			if(--$row > 0) echo ",";
 		}
-		echo "];}";
+		echo "]}";
 	}
 	else
 		echo "No result found!";
@@ -148,7 +150,7 @@ function getListeLigue(){
 			echo "{\"id\" : \"$ligne->ID_Ligue\", \"nom\" : \"$ligne->Nom_Ligue\"}";
 			if(--$row > 0) echo ",";
 		}
-		echo "];}";
+		echo "]}";
 	}
 	else
 		echo "No result found!";
@@ -166,7 +168,7 @@ function getListeGestionnaire(){
 			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\"}";
 			if(--$row > 0) echo ",";
 		}
-		echo "];}";
+		echo "]}";
 	}
 	else
 		echo "No result found!";
@@ -195,13 +197,19 @@ switch ($action){
            newSaison();
         break;
         case "newPoint" :
-	   newPoint();
+           newPoint();
+        break;
+        case "listeEquipe" :
+           getListEquipe();
+        break;
+        case "listeJoueur" :
+           getAlignement();
         break;
         case "listeLigue" :
-		getListeLigue();
+           getListeLigue();
         break;
         case "listeGestionaires" :
-		getListeGestionnaire();
+           getListeGestionnaire();
         break;
 }
 
