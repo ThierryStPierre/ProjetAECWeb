@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+<!--		<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet"> -->
+<!--		<script type="text/javascript" src="jquery-1.11.1.js"> </script> -->
+<!--		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>  -->
+<!-- 	    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>		
+		<script type="text/javascript">
+			
+			function click_user() {					
+				$("#txtUtilisateur").hide();
+				$("#authent").show();				
+			}
+			
+			function click_authent() {
+				var password = $("#psswd").val();
+					var usr = $("#utilisateur").val();
+
+					if ("user" != usr || password != "password") {
+						$("#ici").text("L'authentification n'est pas correcte. Re-essayer");
+						
+						return false;
+					}
+					$("#ici").text("L'authentification est correcte");
+					
+					$("#authent").hide();
+					$("#ligue").show();
+					
+					return true;
+			}
+			
+			function click_ligue() {
+				$("#ligue").hide();
+				$("#equipe").show();
+			}
+			
+			function click_equipe() {
+				$("#equipe").hide();
+				$("#joueur").show();
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		
+		
+		
+		</script>
+		
+	
+		<style type="text/css">
+		
+		/* Panneau utilisateur */		
+			div.header {
+				border: 1px solid;
+				border-radius: 15px;
+				margin-top: 2px;
+				margin-bottom: 25px;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+		
+			#txtEntreprise {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: red;     /* #0B6121; */
+				margin-left: 73px;
+				margin-right: 73px;
+				}
+		
+			#txtUtilisateur {
+				background-color: #DFE1E7;
+				line-height: 50px;
+				width: 225px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-top: 50px;
+				margin-left: 500px;
+			}
+	
+			#txtUtilisateur button {
+				margin-left: 45px;
+				background-color: #e6ffcc;
+				color: #000000  /*  #0B6121;  */
+				text-align: center;
+				}
+				
+				
+		/* Panneau authentification */	
+			#txtAuthent {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+			
+			.header1{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+		
+			#authent {
+				background-color: #DFE1E7;
+				line-height: 35px;
+				width: 225px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-left: 500px;
+			}
+			
+			#authent input {
+				height:20px;
+				width: 180px;
+				margin-left: 9px;
+				padding: 0 0 0 11px;
+			}
+			#authent button {
+				margin-left: 55px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+
+		/* Panneau ligue */	
+			#txtLigue {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header2{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+			
+			#ligue {
+				background-color: #DFE1E7;
+				line-height: 35px;
+				width: 360px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-left: 500px;
+			}
+			#ligue input {
+				height:20px;
+				width: 180px;
+				margin-left: 110px;
+				padding: 0 0 0 11px;
+			}
+			#ligue button {
+				margin-left: 175px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+		
+		
+		/* Panneau equipe */	
+		
+			#txtEquipe {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header3{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+		
+			#equipe {
+				background-color: #DFE1E7;
+				line-height: 35px;
+				width: 360px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-left: 500px;
+			}
+		
+			#equipe input {
+				height:20px;
+				width: 180px;
+				margin-left: 110px;
+				padding: 0 0 0 11px;
+			}
+		
+			#equipe button {
+				margin-left: 175px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+		
+		/* Panneau enregistrement joueur */
+		
+			#txtEnregistrement {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header4{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+		
+			#joueur {
+				background-color: #DFE1E7;
+				line-height: 75px;
+				width: 760px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-left: 200px;
+			}
+						
+			#nom_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 109px;
+				padding: 0 0 0 11px;
+			}
+			
+			#prenom_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 87px;
+				padding: 0 0 0 11px;
+			}
+		
+			#ddn_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 22px;
+				padding: 0 0 0 11px;
+			}
+		
+			#tel_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 73px;
+				padding: 0 0 0 11px;
+			}
+		
+			#email_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 85px;
+				padding: 0 0 0 11px;
+			}
+		
+			#pos_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 89px;
+				padding: 0 0 0 11px;
+			}
+		
+			#chand_joueur {	
+				height:20px;
+				width: 180px;
+				margin-left: 5px;
+				padding: 0 0 0 11px;
+			}
+			
+			#btnEnregistrer {
+				margin-left: 175px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+			
+			div.absolute {
+				position: absolute;
+				top: 105px;
+				right: 385px;
+				width: 250px;
+				height: 550px;
+				border: 3px solid #73AD21;
+			}
+					
+			#stitre_joueur {
+				margin-left: 175px;
+				background-color: #F1F8E0; 
+				color: #0B6121;
+				text-align: center;
+			}
+			
+			
+	
+
+
+			
+				
+				
+				
+		</style>
+	
+	
+	</head>
+	<body>
+		<div id="txtUtilisateur"      style="display:none;" href="hutilisateur"   >
+			<div class ="header">
+				<p id="txtEntreprise"><b><i>Microsort<br>et<br>Limux</i></b></p> 
+			</div>
+			
+			<div class="center">
+				<center><button type="button" name="boutonAdmin" id="btnAdmin" onclick="click_user();"><b><i>ADMINISTRATEUR</i></b></button></center> 
+				<center><button type="button" name="boutonCapt" id="btnCapt" onclick="click_user()";><b><i>CAPITAINE</i></b></button></center> 
+				<center><button type="button" name="boutonJoueur" ><b><i>JOUEUR</i></b></button></center> 
+				<center><button type="button" name="boutonVisit" ><b><i>VISITEUR</i></b></button></center>
+			</div>
+		</div>
+		
+		
+		
+		<div id="authent" style="display:none;" href="hauthent">
+			<div class ="header1">
+				<center><p id="txtAuthent"><b>AUTHENTIFICATION</b></p> </center>
+			</div>
+			
+			<center><p><b>Utilisateur</p> </center>				
+				<input type="text" id="utilisateur" value="" placeholder="Entrer un code d'utilisateur"> </br>
+			<center><p><b>Mot de passe</p> </center>
+				<input type="password" id="psswd" value="" placeholder="Entrer un mot de passe"> </br></br>
+			<button type="button" name="boutonConnect" id="btnConnect" onclick="click_authent();"><b><i>Se connecter</i></b></button> 
+			<p id="ici"></p> 
+		</div>
+		
+		
+		
+		<div id="ligue" style="display:none;" href="hligue">
+			<div class ="header2">
+				<center><p id="txtLigue"><b>CREATION DE LIGUE</b></p> </center>
+			</div>
+			
+			<center><p><b>Nom de ligue</p> </center>				
+				<input type="text" id="nomLigue" value="" placeholder="Entrer un nom de ligue">
+			<center><p><b>Nom de sous ligue</p> </center>				
+				<input type="text" id="nomSousligue" value="" placeholder="Entrer un nom de sous ligue"> 
+							
+			<center><label for="category_name">Categorie</label> </center>
+				<input id="category_name" name="category_name" type="text" list="category" value="" placeholder="Selectionner une categorie"/>
+				<datalist id="category">
+					<option value="Catégorie A">
+					<option value="Catégorie B">
+					<option value="Catégorie C">
+					<option value="Catégorie D">
+					<option value="Catégorie AA">
+					<option value="Catégorie BB">
+					<option value="Catégorie CC">
+					<option value="Catégorie DD">
+					<option value="Autres">
+				</datalist>	
+				
+			<button type="button" name="boutonOKligue" id="btnOKligue" onclick="click_ligue();"><b><i>OK</i></b></button> 		
+		</div>
+		
+		
+		
+		<div id="equipe"  style="display:none;" href="hequipe">
+			<div class ="header3">
+				<center><p id="txtEquipe"><b>CREATION D'EQUIPE</b></p> </center>
+			</div>
+			
+			<center><p><b>Catégorie</p> </center>				
+				<input type="text" id="nomCategorie" >
+				
+			<center><label for="nombre_equipe">Nombre d'équipe</label> </center>
+				<input id="nombre_equipe" name="nombre_equipe" type="number" min="1" max="30" step="1" value="" placeholder="Selectionner un nombre" />
+		
+			<center><label for="nom_equipe">Nom d'équipe</label> </center>
+				<input type="text" id="nomEquipe" placeholder="Entrer un nom d'équipe">
+				
+			<center><label for="nombre_joueur">Nombre de joueurs de l'équipe</label> </center>
+				<input id="nombre_joueur" name="nombre_joueur" type="number" min="1" max="30" value="" placeholder="Selectionner un nombre" >
+				
+			<button type="button" name="boutonOKequipe" id="btnOKequipe" onclick="click_equipe();"><b><i>OK</i></b></button>	
+				
+		</div>
+	
+
+		<div id="joueur"      >
+							
+			<div class ="header4">
+				<center><p id="txtEnregistrement"><b>ENREGISTREMENT DE JOUEUR DANS L'EQUIPE</b></p> </center>
+			</div>
+					
+			<div>
+			
+				<label for="titre_equipe">L'équipe <output id="titre_equipe" name="titre_equipe" type="text" value="" /></label> </br>
+			
+				<label for="nom_joueur">Nom<input id="nom_joueur" name="nom_joueur" type="text" value="" placeholder="Entrer un nom du joueur" /></label> </br>
+				<label for="prenom_joueur">Prenom<input id="prenom_joueur" name="prenom_joueur" type="text" value="" placeholder="Entrer un prénom du joueur" /></label> </br>
+				<label for="ddn_joueur">Date de naissance<input id="ddn_joueur" name="ddn_joueur" type="text" value="" placeholder="Entrer une date de naissance" /></label> </br>
+				<label for="tel_joueur">Téléphone<input id="tel_joueur" name="tel_joueur" type="text" value="" placeholder="Entrer un numéro de téléphone" /></label> </br>
+				<label for="email_joueur">Courriel<input id="email_joueur" name="email_joueur" type="text" value="" placeholder="Entrer un courriel" /></label> </br>
+				<label for="pos_joueur">Position<input id="pos_joueur" name="pos_joueur" type="text" value="" placeholder="Entrer une position du joueur" /></label> </br>
+				<label for="chand_joueur">Numéro du chandail<input id="chand_joueur" name="chand_joueur" type="text" value="" placeholder="Entrer un numéro de chandail" /></label> </br>
+
+				<button type="button" name="boutonEnr" id="btnEnregistrer"><b><i>Enregistrer</i></b></button>
+											
+			</div>
+			
+			<div class="absolute" id="stitre_joueur"   STYLE="overflow: auto;">
+				<center><h3>Joueur</h3></center>
+				<output type="text" id="liste_joueur" name="liste_joueur" value=""  /> </br>
+				
+				
+				<table bgcolor="green">
+					<tr><td bgcolor="blue">testing </td></tr>
+					<tr><td>free php scripts;/td></tr>
+					<tr><td bgcolor="blue">free php scripts</td></tr>
+					<tr><td>free php scripts</td></tr>
+					<tr><td bgcolor="blue">free php scripts</td></tr>
+				</table>
+				
+				
+				
+				
+				
+			</div>
+				
+			
+			
+			
+
+		</div>
+
+		
+		
+		
+		
+		
+		
+		
+
+	
+		
+		
+		
+		
+	</body>
+</html>
