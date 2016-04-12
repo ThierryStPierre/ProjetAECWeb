@@ -93,10 +93,9 @@ function newPoint(){
 	doQuery($req);
 }
 
-function getAlignement(){
-	$idEquipe = $_POST['idEquipe'];
-	$idSaison=$_POST['idSaison'];
-	$req = "SELECT Joueur.ID_Joueur, Nom, Prenom, Numero_Chandail FROM Joueur, Alignement where Alignement.ID_Equipe=$idEquipe AND Alignement.ID_Saison=$idSaison";
+function getJoueurLigue(){
+	$idLigue = $_POST['idLigue'];
+	$req = "SELECT Joueur.ID_Joueur, Nom, Prenom, Numero_Chandail FROM Joueur, Alignement, Equipe WHERE Alignement.ID_Equipe=Equipe.ID_Equipe AND Equipe.ID_Ligue=$idLigue";
 
 	$result = doQuery($req);
 
@@ -104,7 +103,32 @@ function getAlignement(){
 	if($row > 0){
 		echo "{\"Alignement :\" : [";
 		while($ligne = mysqli_fetch_object($result)){
-			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\",  \"nom\" : \"$ligne->Nom\" \"numero\" : \"$ligne->Numero_Chandail\"}";
+			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\", \"numero\" : \"$ligne->Numero_Chandail\"}";
+			if(--$row > 0) echo ",";
+		}
+		echo "]}";
+	}
+	else
+		echo "No result found!";
+	mysql_free_result($result);
+}
+
+function getAlignement(){
+	$whereStr = "";
+	$idEquipe = $_POST['idEquipe'];
+	$idSaison=$_POST['idSaison'];
+	if($idEquipe && $idSaison)
+		$whereStr = "WHERE Alignement.ID_Equipe=$idEquipe AND Alignement.ID_Saison=$idSaison";
+
+	$req = "SELECT Joueur.ID_Joueur, Nom, Prenom, Numero_Chandail FROM Joueur, Alignement " . $whereStr;
+
+	$result = doQuery($req);
+
+	$row = mysqli_num_rows($result);
+	if($row > 0){
+		echo "{\"Alignement :\" : [";
+		while($ligne = mysqli_fetch_object($result)){
+			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\", \"numero\" : \"$ligne->Numero_Chandail\"}";
 			if(--$row > 0) echo ",";
 		}
 		echo "]}";
@@ -204,6 +228,9 @@ switch ($action){
         break;
         case "listeJoueur" :
            getAlignement();
+        break;
+        case "listeJoueurLigue" :
+           getJoueurLigue();
         break;
         case "listeLigue" :
            getListeLigue();
