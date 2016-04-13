@@ -101,7 +101,7 @@ function getJoueurLigue(){
 
 	$row = mysqli_num_rows($result);
 	if($row > 0){
-		echo "{\"Alignement :\" : [";
+		echo "{\"Alignement\" : [";
 		while($ligne = mysqli_fetch_object($result)){
 			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\", \"numero\" : \"$ligne->Numero_Chandail\"}";
 			if(--$row > 0) echo ",";
@@ -126,7 +126,7 @@ function getAlignement(){
 
 	$row = mysqli_num_rows($result);
 	if($row > 0){
-		echo "{\"Alignement :\" : [";
+		echo "{\"Alignement\" : [";
 		while($ligne = mysqli_fetch_object($result)){
 			echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\", \"numero\" : \"$ligne->Numero_Chandail\"}";
 			if(--$row > 0) echo ",";
@@ -139,8 +139,13 @@ function getAlignement(){
 }
 
 function getListEquipe(){
+	$whereStr = "";
 	$idLigue=$_POST['idLigue'];
-	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe INNER JOIN Ligue ON Equipe.ID_Ligue=Ligue.ID_Ligue WHERE ID_Ligue = $idLigue";
+	if($idLigue)
+	 $whereStr = "WHERE ID_Ligue = $idLigue";
+
+//	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe INNER JOIN Ligue ON Equipe.ID_Ligue=Ligue.ID_Ligue WHERE Nom_Ligue LIKE '%$idLigue%'";
+	$req ="SELECT ID_Equipe, Nom_Equipe FROM Equipe " . $whereStr ;
 
 	$result = doQuery($req);
 
