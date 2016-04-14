@@ -1,0 +1,283 @@
+	
+		/* Panneau utilisateur */		
+			div.header {
+				border: 1px solid;
+				border-radius: 15px;
+				margin-top: 2px;
+				margin-bottom: 25px;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+		
+			#txtEntreprise {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: red;     /* #0B6121; */
+				margin-left: 73px;
+				margin-right: 73px;
+				}
+		
+			#txtUtilisateur {
+				background-color: #DFE1E7;
+				line-height: 50px;
+				width: 225px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-top: 50px;
+				margin-left: 500px;
+			}
+	
+			#txtUtilisateur button {
+				margin-left: 45px;
+				background-color: #e6ffcc;
+				color: #000000  /*  #0B6121;  */
+				text-align: center;
+				}
+				
+				
+		/* Panneau authentification */	
+			#txtAuthent {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+			
+			.header1{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+		
+			#authent {
+				background-color: #DFE1E7;
+				line-height: 35px;
+				width: 225px;
+				border-left: 3px solid #101907;
+				border-right: 3px solid #101907;
+				border-bottom: 3px solid #101907;
+				border-top: 3px solid #101907;
+				border-radius: 15px;
+				margin-left: 500px;
+			}
+			
+			#authent input {
+				height:20px;
+				width: 180px;
+				margin-left: 9px;
+				padding: 0 0 0 11px;
+			}
+			#authent button {
+				margin-left: 55px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+
+		/* Panneau ligue */	
+			#txtLigue {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header2{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+			
+			#ligue form {
+				margin: 0 auto;
+				width: 500px;
+				hight: 300px;
+				padding: 1em;
+				border: 2px solid #CCC;
+				border-radius: 1em;
+			}
+			
+			#ligue form div + div {
+				margin-top: 1em;
+			}
+			
+			#ligue input {  /* boite du texte - ligue */
+				font: 15px sans-serif;
+				width: 280px;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				border: 2px solid #999;
+			}
+
+			#ligue label {
+				display: inline-block;
+				width: 140px;
+				text-align: right;
+			}	
+			
+			#ligue button {
+				margin-left: 100px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+			
+			#ligue button:focus {   /* rehausser le bouton actif */
+				background-color: #F0FFFF;
+			}
+		
+		
+		/* Panneau equipe */	
+		
+			#txtEquipe {
+				font-family: Arial;
+				font-size: 	12pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header3{
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+		
+			#equipe form {
+				margin: 0 auto;
+				width: 560px;
+				hight: 300px;
+				padding: 1em;
+				border: 2px solid #CCC;
+				border-radius: 1em;
+			}
+		
+			#equipe form div + div {
+				margin-top: 1em;
+			}
+		
+			#equipe input {  /* boite du texte - equipe */
+				font: 15px sans-serif;
+				width: 280px;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				border: 2px solid #999;
+			}
+				
+			#equipe output {
+				height:20px;
+				width: 180px;
+				margin-left: 90px;
+				padding: 0 0 0 11px;
+			}
+			
+			#equipe button {
+				margin-left: 105px;
+				background-color: #BFFA51;
+				color: #0B6121;
+				text-align: center;
+			}
+		
+			#equipe button:focus {   /* rehausser le bouton actif */
+				background-color: #F0FFFF;
+			}
+		
+		
+		
+		/* Panneau inscription joueur */
+		
+			#txtEnregistrement {
+				font-family: Arial;
+				font-size: 	14pt;
+				color: #0B6121;
+				margin: 7px;
+			}
+		
+			.header4{
+				padding-left: 80px;
+				margin-bottom: 0px;
+				border-bottom: 0px;
+				height: 60px;
+			}
+			
+			#output_nom_equipe {
+				font: 15px sans-serif;
+				font-size: 	16pt;
+				color: green;
+			}
+			
+			#inscription form {
+				margin: 0 auto;
+				width: 740px;
+				height: 470px;
+				padding: 1em;
+				border: 2px solid #CCC;
+				border-radius: 1em;
+			}
+			
+			#inscription form div + div {
+				margin-top: 1em;
+			}
+			
+			label {
+				display: inline-block;
+				width: 140px;
+				text-align: right;
+			}			
+		
+			input {  /* boite du texte - enregistrement */
+				font: 15px sans-serif;
+				width: 280px;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				border: 2px solid #999;
+			}
+			
+			input:focus {   /* rehausser les champs actifs */
+				border-color: #000;
+			}
+			
+			.button {
+				padding-left: 140px; 
+			}
+
+			button {
+				margin-top: 1em;
+				margin-left: .3em;
+				background-color: #BFFA51;
+				border: 2px solid #999;
+				border-radius: .3em;
+			}
+			
+			button:focus {   /* rehausser le bouton actif */
+				background-color: #F0FFFF;
+			}		
+			
+			.s_joueur {
+				margin-top: 80px;				
+				width: 250px; 
+				height: 350px;
+				border: 2px solid #999;
+				border-radius: .3em;			
+			}
+			
+			.table_joueur {
+				width: 550px; 
+				height: 400px;
+				font: 9px sans-serif;
+			}
+			
+			.gauche {
+				float: left;
+			}
+			
+			.droite {
+				float: right;
+			}
+
+			#droite {
+				marging-left: 300px;
+			}
+			
