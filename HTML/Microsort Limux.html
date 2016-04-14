@@ -41,9 +41,9 @@
 		
 		
 		<!-- LIGUE -->
-		<!--div id="ligue"  style="display:none;" href="hligue"  -->
+		<div id="ligue"  style="display:none;" href="hligue"  >
 		
-		<div id="ligue" >    
+		<!--div id="ligue"-->    
 			<form id="form_ligue" name="form_ligue" action="http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php" method="post">
 				<div class ="header2">
 					<center><p id="txtLigue"><b>CREATION DE LIGUE</b></p> </center>
@@ -88,13 +88,14 @@
 		<!-- EQUIPE -->
 		<div id="equipe" style="display:none;" href="hequipe"  >
 		
-		<!-- div id="equipe" -->
+		<!--div id="equipe"-->
 		
-			<form action="/ma-page-ligue" method="post" >
+			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php" method="post" >
 				<div class ="header3">
 					<center><p id="txtEquipe"><b>CREATION D'EQUIPE</b></p> </center>
 				</div>
-				
+				<input type="hidden" name="action" value="newEquipe">
+				<input type="hidden" name="idLigue" value="">
 				<div>
 					<label for="output_cat_eq">Catégorie : </label>
 					<output id="output_cat_eq" name="nom_cat_eq" type="text" value="" />
@@ -107,7 +108,7 @@
 				
 				<div>
 					<label for="nom_equipe">Nom d'équipe : </label>
-					<input type="text" id="nomEquipe" placeholder="Entrer un nom d'équipe" />
+					<input type="text" id="nomEquipe" name="nomEquipe" placeholder="Entrer un nom d'équipe" />
 				</div>
 				
 				<div>
@@ -124,8 +125,9 @@
 	
 	
 		<!-- INSCRIPTION -->
-		<div id="inscription"  style="display:none;" href="hinscription" >
-		<!--div id="inscription" -->
+		<!--div id="inscription"  style="display:none;" href="hinscription" -->
+		
+		<div id="inscription" >
 			<form action="/ma-page-inscription" method="post" >
 				<div class="gauche">					
 					<div class ="header4">
@@ -181,20 +183,8 @@
 						<center><h3>Joueur</h3></center>
 						<output type="text" id="liste_joueur" name="liste_joueur" value=""  /> </br>
 						
-						<output type="text" id="table_joueur" name="table_joueur" value=""  bgcolor="honeydew" /> </br>
-						
-		
-						<!-- <table bgcolor="honeydew" class="table_joueur" id="table_joueur" >
-							<tr><output id="output_nom_joueur" name="output_nom_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_prenom_joueur" name="output_prenom_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_ddn_joueur" name="output_ddn_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_tel_joueur" name="output_tel_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_courriel_joueur" name="output_courriel_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_pos_joueur" name="output_pos_joueur" type="text" value="" /></tr> </br>
-							<tr><output id="output_chandail_joueur" name="output_chandail_joueur" type="text" value="" /></tr> </br>
-							
-						</table> -->
-						
+						<output id="table_joueur" name="table_joueur" value=""  bgcolor="honeydew" /> </br> 
+												
 					</div>
 				</div>
 				
