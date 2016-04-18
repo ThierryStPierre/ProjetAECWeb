@@ -86,11 +86,11 @@
 		
 		
 		<!-- EQUIPE -->
-		<div id="equipe" style="display:none;" href="hequipe"  >
+		<!--div id="equipe" style="display:none;" href="hequipe"  -->
 		
-		<!--div id="equipe"-->
+		<div id="equipe">
 		
-			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php" method="post" >
+			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class ="header3">
 					<center><p id="txtEquipe"><b>CREATION D'EQUIPE</b></p> </center>
 				</div>
@@ -125,53 +125,85 @@
 	
 	
 		<!-- INSCRIPTION -->
-		<!--div id="inscription"  style="display:none;" href="hinscription" -->
-		
-		<div id="inscription" >
-			<form action="/ma-page-inscription" method="post" >
+		<div id="inscription"  style="display:none;" href="hinscription" >
+																		
+		<!--div id="inscription" -->
+			<form id="form_inscription" name="form_inscription" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class="gauche">					
 					<div class ="header4">
 						<center><p id="txtEnregistrement"><b>INSCRIPTION DE JOUEUR DANS L'EQUIPE</b></p> </center>
-					</div>		
+					</div>
+					<input type="hidden" name="action" value="newJoueur">
+					<input type="hidden" name="ID_Joueur" value="">
 					<div>
 						<label for="titre_equipe">L'équipe </label> 
 						<output id="output_nom_equipe" name="titre_equipe" type="text" value="" /></br>
 					</div>
 					
 					<div>
-						<label for="nom_joueur">Nom :</label>
-						<input id="nom_joueur" name="nom_joueur" type="text" value="" placeholder="Entrer un nom du joueur" /> </br>
+						<label for="nom">Nom :</label>
+						<input id="nom" name="nom" type="text" value="" placeholder="Entrer un nom du joueur" /> </br>
 					</div>
 					<div>
-						<label for="prenom_joueur">Prenom :</label>
-						<input id="prenom_joueur" name="prenom_joueur" type="text" value="" placeholder="Entrer un prénom du joueur" /> </br>
+						<label for="prenom">Prenom :</label>
+						<input id="prenom" name="prenom" type="text" value="" placeholder="Entrer un prénom du joueur" /> </br>
 					</div>
 
 					<div>
-						<label for="ddn_joueur">Date de naissance :</label>
-						<input id="ddn_joueur" name="ddn_joueur" type="text" value="" placeholder="Entrer une date de naissance" /> </br>
+						<label for="dateDeNaissance">Date de naissance :</label>
+						<input id="dateDeNaissance" name="dateDeNaissance" type="text" value="" placeholder="Entrer une date de naissance" /> </br>
 					</div>
 
 					<div>
-						<label for="tel_joueur">Téléphone :</label>
-						<input id="tel_joueur" name="tel_joueur" type="text" value="" placeholder="Entrer un numéro de téléphone" /> </br>
+						<label for="telephone">Téléphone :</label>
+						<input id="telephone" name="telephone" type="text" value="" placeholder="Entrer un numéro de téléphone" /> </br>
 					</div>
 
 					<div>
-						<label for="email_joueur">Courriel :</label>
-						<input id="email_joueur" name="email_joueur" type="text" value="" placeholder="Entrer un courriel" /> </br>
+						<label for="courriel">Courriel :</label>
+						<input id="courriel" name="courriel" type="text" value="" placeholder="Entrer un courriel" /> </br>
 					</div>
 
 					<div>
-						<label for="pos_joueur">Position :</label>
-						<input id="pos_joueur" name="pos_joueur" type="text" value="" placeholder="Entrer une position du joueur" /> </br>
+						<label for="position">Position :</label>
+						<input id="position" name="position" type="text" value="" placeholder="Entrer une position du joueur" /> </br>
 					</div>
 
 					<div>
-						<label for="chand_joueur">Numéro du chandail :</label>
-						<input id="chand_joueur" name="chand_joueur" type="text" value="" placeholder="Entrer un numéro de chandail" /> </br>
+						<label for="numeroChandail">Numéro du chandail :</label>
+						<input id="numeroChandail" name="numeroChandail" type="text" value="" placeholder="Entrer un numéro de chandail" /> </br>
 					</div>
 
+				<!-- ces 2 div vont enlever avec la nouvelle version -->
+					<div>
+						<label for="nomUsager">Nom d'utilisateur :</label>
+						<input id="nomUsager" name="nomUsager" type="text" value="" placeholder="Entrer un nom d'utilisateur" /> </br>
+					</div>
+					
+					<div>
+						<label for="motDePasse">Mot de passe :</label>
+						<input id="motDePasse" name="motDePasse" type="text" value="" placeholder="Entrer un mot de passe" /> </br>
+					</div>
+					
+					<div>
+						<label for="capitaine">Capitaine (oui/non):</label>
+						<input id="capitaine" name="capitaine" type="text" value="" placeholder="Entrer un oui/non" /> </br>
+					</div>
+					
+					<div>
+						<label for="pointeur">Pointeur :</label>
+						<input id="pointeur" name="pointeur" type="text" value="" placeholder="Entrer un oui/non" /> </br>
+					</div>
+					
+					<div>
+						<label for="gestionnaire">Gestionnaire :</label>
+						<input id="gestionnaire" name="gestionnaire" type="text" value="" placeholder="Entrer un oui/non" /> </br>
+					</div>
+					
+				<!-- ********************************************** -->
+					
+					
+					
 					<div class="button">
 						<button type="button" name="boutonEnr" id="btnEnregistrer" onclick="click_inscription();"><b><i>Enregistrer un joueur</i></b></button>
 					</div>
@@ -183,7 +215,7 @@
 						<center><h3>Joueur</h3></center>
 						<output type="text" id="liste_joueur" name="liste_joueur" value=""  /> </br>
 						
-						<output id="table_joueur" name="table_joueur" value=""  bgcolor="honeydew" /> </br> 
+						<p id="table_joueur" name="table_joueur" value=""  bgcolor="honeydew"> </p> 
 												
 					</div>
 				</div>
