@@ -40,8 +40,7 @@
 					alert("Les champs de ligue ne sont pas rempli");
 					return false;
 				}
-				
-				
+		
 				alert($('#form_ligue').serialize());
 
 				$.ajax({
@@ -50,11 +49,19 @@
 					data:$('#form_ligue').serialize(),
 					datatype:'json',
 					success:function(reponse){ 
-						alert(JSON.stringify(reponse));
+						
+						
+						var obj = JSON.parse(reponse);
+						if (obj.hasOurProperty("Status"))
+							if (obj.hasOurProperty("Id"))
+								form.$(ID_Ligue).value = obj["id"];
+								
+								
+						alert(JSON.stringify(reponse));		
 					}
 				});
-
-
+				
+				
 				alert("La ligue " +nom_ligue +" est créée avec succes");
 				
 				$("#ligue").hide();
@@ -89,7 +96,15 @@
 					type:'post',
 					data:$('#form_equipe').serialize(),
 					datatype:'json',
-					success:function(reponse){ 
+					success:function(reponse){
+											
+						
+						var obj = JSON.parse(reponse);
+						if (obj.hasOurProperty("Status"))
+							if (obj.hasOurProperty("Id"))
+								form.$(ID_Equipe).value = obj["id"];
+								
+
 						alert(JSON.stringify(reponse));
 					}
 				});
@@ -129,34 +144,30 @@
 				var data_joueur = null;
 				var str = "";
 				var Jlenght;
-				var couleur;
 
 				data_joueur = nom_joueur +", " +prenom_joueur +", " +ddn_joueur +", " +tel_joueur +", "
 				+email_joueur +", " +pos_joueur +", " +", " +chand_joueur +".";
 				
 				joueur.push(data_joueur);	
 				Jlenght = joueur.length;
-				
-				/* changer de couleur pour faciliter la visualisation */
 				str = document.getElementById("table_joueur");
-				if (Jlenght%2 == 0 ) {
-					str.innerHTML = "<span style='color:'#f1f1a9'>" +joueur.join('<br />'  + "</span>");
+				
+				/* colorer pour faciliter la visualisation */
+		/*	---	for (i=0; i < joueur.length; i++) {
+					if (Jlenght%2 == 0 ) {
+						str.innerHTML = joueur[i] +"<br />";
+						str.style.color = 'red' ;  //'#40ff00';
+					}
+					else {
+						str.innerHTML = joueur[i] +"<br />";
+						str.style.color = 'green';  //'#ffbf00';
+					}
 				}
-				else {
-					str.innerHTML = "<span style='color:'#f5f571'>" +joueur.join('<br />'  + "</span>");
-				}
-				
-				
-			//	str = document.getElementById("table_joueur");
-			//	str.innerHTML = "<span style='color:'#f5f571'>" +joueur.join('<br />'  + "</span>");
-				
-				
-				alert("content of " +str)
-				//str.innerHTML = joueur.join('<br />');
+		--- */
 			
-
-				
-		/* -----------------------------------------------------			
+			
+				str.innerHTML = joueur.join('<br />'); // afficher dans la boite du droit
+			
 				alert($('#form_inscription').serialize());
 
 				$.ajax({
@@ -164,13 +175,20 @@
 					type:'post',
 					data:$('#form_inscription').serialize(),
 					datatype:'json',
-					success:function(reponse){ 
+					success:function(reponse){
+					
+					
+						var obj = JSON.parse(reponse);
+						if (obj.hasOurProperty("Status"))
+							if (obj.hasOurProperty("Id"))
+								form.$(ID_Joueur).value = obj["id"];
+					
+					
 						alert(JSON.stringify(reponse));
 					}
 				});
 
 				alert("Le joueur " +nom_joueur +" est créé avec succes");
-		----------------------------------------------------- */
 		
 				
 				/* remettre a blanc les champs d'entree */
@@ -182,7 +200,7 @@
 				document.getElementById('position').value = '';
 				document.getElementById('numeroChandail').value = '';
 				
-				/* deactiver les champs d'entree */
+				/* désactiver les champs d'entree */
 				if (Jlenght == nb_joueur) {
 					document.getElementById('nom').disabled = true;
 					document.getElementById('prenom').disabled = true;
@@ -193,9 +211,11 @@
 					document.getElementById('numeroChandail').disabled = true;
 					alert("Le total des " +nb_joueur +" joueurs sont enregistrés.");
 				}
-				
-				
 
+			}
+			
+			function click_quitter() {
+				exit();
 			}
 			
 			
