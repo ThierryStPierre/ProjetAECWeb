@@ -211,7 +211,7 @@
 			#inscription form {
 				margin: 0 auto;
 				width: 740px;
-				height: 470px;
+				height: 640px;     /* 470px; a remettre avec nouvelle version des tables */
 				padding: 1em;
 				border: 2px solid #CCC;
 				border-radius: 1em;
@@ -263,10 +263,10 @@
 				border-radius: .3em;			
 			}
 			
-			.table_joueur {
+			#table_joueur {
 				width: 550px; 
 				height: 400px;
-				font: 9px sans-serif;
+				font: 12px sans-serif;
 			}
 			
 			.gauche {
