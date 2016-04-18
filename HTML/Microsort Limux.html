@@ -11,7 +11,9 @@
 	<body>
 	
 		<!-- UTILTISATEURS -->
-		<div id="txtUtilisateur"    style="display:none;" href="husager" >
+		<!--div id="txtUtilisateur" -->
+		
+		<div id="txtUtilisateur" style="display:none;" href="husager" >
 			<div class ="header">
 				<p id="txtEntreprise"><b><i>Microsort<br>et<br>Limux</i></b></p> 
 			</div>
@@ -86,9 +88,9 @@
 		
 		
 		<!-- EQUIPE -->
-		<!--div id="equipe" style="display:none;" href="hequipe"  -->
+		<div id="equipe" style="display:none;" href="hequipe" >
 		
-		<div id="equipe">
+		<!--div id="equipe"-->
 		
 			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class ="header3">
@@ -125,9 +127,9 @@
 	
 	
 		<!-- INSCRIPTION -->
-		<div id="inscription"  style="display:none;" href="hinscription" >
+		<!--div id="inscription"  style="display:none;" href="hinscription" -->
 																		
-		<!--div id="inscription" -->
+		<div id="inscription" >
 			<form id="form_inscription" name="form_inscription" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class="gauche">					
 					<div class ="header4">
@@ -174,7 +176,7 @@
 						<input id="numeroChandail" name="numeroChandail" type="text" value="" placeholder="Entrer un numéro de chandail" /> </br>
 					</div>
 
-				<!-- ces 2 div vont enlever avec la nouvelle version -->
+				<!-- ces 5 div vont enlever avec la nouvelle version -->
 					<div>
 						<label for="nomUsager">Nom d'utilisateur :</label>
 						<input id="nomUsager" name="nomUsager" type="text" value="" placeholder="Entrer un nom d'utilisateur" /> </br>
@@ -207,7 +209,9 @@
 					<div class="button">
 						<button type="button" name="boutonEnr" id="btnEnregistrer" onclick="click_inscription();"><b><i>Enregistrer un joueur</i></b></button>
 					</div>
-					
+					<div class="button">
+						<button type="button" name="boutonQuit" id="boutonQuit" onclick="click_quitter();"><b><i>Quitter</i></b></button>
+					</div>
 				</div>
 			
 				<div class= "droite" id="droite">
@@ -222,41 +226,7 @@
 				
 			</form>
 
-		</div>
-		
-		
-		
-		
-		
-		
-
-	
-		
-		
-		
+		</div>	
 		
 	</body>
 </html>
-
-
-<!--
-<table bgcolor="green" class="table_joueur">
-							<tr><td bgcolor="blue">testing </td></tr>
-							<tr><td>free php scripts;/td></tr>
-							<tr><td bgcolor="blue">free php scripts</td></tr>
-							<tr><td>free php scripts</td></tr>
-							<tr><td bgcolor="blue">free php scripts</td></tr>
-							
-							<tr><td bgcolor="yellow">testing </td></tr>
-							<tr><td>free php scripts;/td></tr>
-							<tr><td bgcolor="blue">free php scripts</td></tr>
-							<tr><td>free php scripts</td></tr>
-							<tr><td bgcolor="red">free php scripts</td></tr>
-							
-							<tr><td bgcolor="blue">testing </td></tr>
-							<tr><td>free php scripts;/td></tr>
-							<tr><td bgcolor="blue">free php scripts</td></tr>
-							<tr><td>free php scripts</td></tr>
-							<tr><td bgcolor="blue">free php scripts</td></tr>
-</table>
--->
