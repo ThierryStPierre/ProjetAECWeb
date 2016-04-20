@@ -14,33 +14,50 @@ function validateLogin(){
     $passWord=$_POST["passWord"];
 
     if(($userName != "") && (passWord != "")){
-        $req = "SELECT * FROM Competence INNER JOIN Login ON Competence.ID_Personne=".
-//        "Login.ID_Personne INNER JOIN Saison on (Competence.ID_Saison = Saison.ID_Saison AND Competence.Competance <> 'Gestionnaire') WHERE Login.Nom_Usager='$userName'".
-        "Login.ID_Personne WHERE Login.Nom_Usager='$userName'".
-        " AND Mot_De_Passe='$passWord'";// AND Saison.Date_Fin > Date('2016-01-01')";
+        $req = "SELECT Nom, Prenom, Personne.ID_Personne FROM Personne INNER ".
+               "JOIN Login ON Personne.ID_Personne=Login.ID_Personne ".
+                "WHERE Login.Nom_Usager='$userName' AND Mot_De_Passe='$passWord'";
 
         $result = doQuery($req);
-//    echo "result = $result";
+
         echo "{\"Status\" : " ;
         if($result == "")
             echo "Fail";
         else{
-           $row = mysqli_num_rows($result);
-        
-           if($row > 0){
-               echo "\"Success\", {\"competence\" : [";
-               while($ligne = mysqli_fetch_object($result)){
-                   echo "{\"id\" : \"$ligne->ID_Personne\", \"competenceValue\"".
-                        " : \"$ligne->Competance\", \"ligue\" : \"$ligne->ID_Ligue\",".
-                        " \"sous-ligue\" : \"$ligne->ID_SousLigue\", \"equipe\" : \"$ligne->ID_Equipe\"}";
-                   if(--$row > 0) echo ",";
-               }
-               echo "]}";
-           } 
-           mysql_free_result($result);
-       }
-    echo "}";
+            $row = mysqli_num_rows($result);
+
+            if($row > 0){
+                $rowCount=0;
+                echo "\"Success\", ";
+                if($ligne = mysqli_fetch_object($result)){
+                    echo " \"personne\" : {\"id\" : \"$ligne->ID_Personne\",";
+                    echo " \"nom\" : \"$ligne->Nom\", \"prenom\" : \"$ligne->Prenom\"}";
+                    $req2 = "SELECT * FROM Competence WHERE ID_Personne=" . $ligne->ID_Personne;
+
+                    $result2= doQuery($req2);
+                    if($result2 != ""){
+                        $row2 = mysqli_num_rows($result2);
+
+                        if($row2 > 0){
+                            echo ", \"competence\" : [";
+                            while($ligne2=mysqli_fetch_object($result2)){
+                                echo "{\"id\" : \"$ligne2->ID_Personne\", \"competenceValue\"".
+                                     " : \"$ligne2->Competence\", \"ligue\" : \"$ligne2->ID_Ligue\",".
+                                     " \"sous-ligue\" : \"$ligne2->ID_SousLigue\", \"equipe\" : \"$ligne2->ID_Equipe\"}";
+                                if(--$row2 > 0 ) echo ",";
+                            }
+                            echo "]";
+                        }
+                    }
+                    mysql_free_result($result2);
+                }
+
+            }
+        }
+        mysql_free_result($result);
+        echo "}";
     }
+
 }
 
 function getJoueurLigue(){
@@ -69,7 +86,7 @@ function getJoueurLigue(){
 function getAlignement(){
     $whereStr = "";
     $idEquipe = $_POST['idEquipe'];
-//    $idSaison=$_GET['idSaison'];
+//    $idSaison=$_POST['idSaison'];
 
     if($idEquipe != "")
         $whereStr = "and ID_Equipe=$idEquipe";
@@ -125,7 +142,7 @@ function getListEquipe(){
 function getListeLigue(){
     $idGestionnaire=$_POST['idGestionnaire'];
     if($idGestionnaire)
-        $req ="SELECT ID_Ligue, Nom_Ligue FROM Ligue WHERE ID_Gestionnaire = $idGestionnaire";
+        $req ="SELECT ID_Ligue, Nom_Ligue FROM Ligue WHERE ID_Personne = $idGestionnaire";
     else
         $req ="SELECT ID_Ligue, Nom_Ligue FROM Ligue";
 
@@ -149,7 +166,7 @@ function getListeLigue(){
 }
 
 function getListeLigueByMarqueur(){
-    $idMarqueur=$_GET['idMarqueur'];
+    $idMarqueur=$_POST['idMarqueur'];
     if($idMarqueur){
     $req = "SELEC ID_Ligue, Nom_Ligue FROM Ligue INNER JOIN Competence ON Competence.ID_Ligue = Ligue.ID_Ligue WHERE Competence.ID_Personne = $idMarqueur";
 //        $req = "SELECT Ligue.ID_Ligue, Nom_Ligue from Saison, Ligue inner join Cadre on Cadre.ID_Ligue=Ligue.ID_Ligue WHERE  Cadre.ID_Saison=Saison.ID_Saison AND Saison.Date_Fin > now()";
@@ -178,9 +195,8 @@ echo "req = $req<br/>";
         echo "{\"Status\" : \"Fail\"}";
 }
 
-
 function getListeGestionnaire(){
-    $req ="SELECT ID_Joueur, Prenom, Nom FROM Joueur WHERE Gestionnaire = true";
+    $req ="SELECT DISTINCT Personne.ID_Personne, Prenom, Nom FROM Personne INNER JOIN Ligue ON Ligue.ID_Personne=Personne.ID_Personne ";
     $result = doQuery($req);
 
     $row = mysqli_num_rows($result);
@@ -189,7 +205,7 @@ function getListeGestionnaire(){
         echo "\"Success\",";
         echo "\"Gestionnaires\" : [";
         while($ligne = mysqli_fetch_object($result)){
-            echo "{\"id\" : \"$ligne->ID_Joueur\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\"}";
+            echo "{\"id\" : \"$ligne->ID_Personne\", \"prenom\" : \"$ligne->Prenom\", \"nom\" : \"$ligne->Nom\"}";
             if(--$row > 0) echo ",";
         }
         echo "]";
@@ -228,3 +244,4 @@ switch ($action){
 
 mysqli_close($conn);
 ?>
+
