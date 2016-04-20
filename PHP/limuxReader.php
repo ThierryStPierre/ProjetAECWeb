@@ -168,10 +168,10 @@ function getListeLigue(){
 function getListeLigueByMarqueur(){
     $idMarqueur=$_POST['idMarqueur'];
     if($idMarqueur){
-    $req = "SELEC ID_Ligue, Nom_Ligue FROM Ligue INNER JOIN Competence ON Competence.ID_Ligue = Ligue.ID_Ligue WHERE Competence.ID_Personne = $idMarqueur";
+    $req = "SELECT Ligue.ID_Ligue, Nom_Ligue FROM Ligue INNER JOIN Competence ON Competence.ID_Ligue = Ligue.ID_Ligue WHERE Competence.ID_Personne = $idMarqueur";
 //        $req = "SELECT Ligue.ID_Ligue, Nom_Ligue from Saison, Ligue inner join Cadre on Cadre.ID_Ligue=Ligue.ID_Ligue WHERE  Cadre.ID_Saison=Saison.ID_Saison AND Saison.Date_Fin > now()";
 
-echo "req = $req<br/>";
+//echo "req = $req<br/>";
         $result = doQuery($req);
 
         $row = mysqli_num_rows($result);
