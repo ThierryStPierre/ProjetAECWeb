@@ -5,19 +5,47 @@
 			}
 			
 			function click_authent() {
+				/* saisir les entrees de authentification */
 				var password = $("#psswd").val();
 				var usr = $("#utilisateur").val();
 
+				/*********************************************
 				if ("user" != usr || password != "password") {
 					$("#ici").text("L'authentification n'est pas correcte. Re-essayer");
-						
 					return false;
 				}
 				$("#ici").text("L'authentification est correcte");
-					
+				*********************************************/
+				
+				
+				if (usr == "" || password == "") {
+					alert("Les champs d'authentification sont requis");
+					document.form_authent.utilisateur.focus(); 
+					return false;
+				}
+				
+				alert($('#form_authent').serialize());
+
+				$.ajax({
+					url:'http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php',
+					type:'post',
+					data:$('#form_authent').serialize(),
+					datatype:'json',
+					success:function(reponse){ 
+		
+						var obj = JSON.parse(reponse);
+						if (obj.hasOurProperty("Status"))
+							if (obj.hasOurProperty("Id"))
+								form.$(ID_Ligue).value = obj["id"];
+								
+						alert(JSON.stringify(reponse));		
+					}
+				});
+
+				alert("L'authentification est correcte");
+				
 				$("#authent").hide();
 				$("#ligue").show();
-					
 				return true;
 			}
 			
@@ -49,14 +77,12 @@
 					data:$('#form_ligue').serialize(),
 					datatype:'json',
 					success:function(reponse){ 
-						
-						
+		
 						var obj = JSON.parse(reponse);
 						if (obj.hasOurProperty("Status"))
 							if (obj.hasOurProperty("Id"))
 								form.$(ID_Ligue).value = obj["id"];
-								
-								
+					
 						alert(JSON.stringify(reponse));		
 					}
 				});
@@ -183,7 +209,7 @@
 				}
 
 				data_joueur = nom_joueur +", " +prenom_joueur +", " +ddn_joueur +", " +tel_joueur +", "
-				+email_joueur +", " +pos_joueur +", " +", " +chand_joueur +".";
+				+email_joueur +", " +pos_joueur +", " +chand_joueur +".";
 
 				joueur.push(data_joueur);	
 				Jlenght = joueur.length;
