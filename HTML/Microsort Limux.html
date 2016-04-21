@@ -11,9 +11,9 @@
 	<body>
 	
 		<!-- UTILTISATEURS -->
-		<!--div id="txtUtilisateur" -->
+		<div id="txtUtilisateur">
 		
-		<div id="txtUtilisateur" style="display:none;" href="husager" >
+		<!-- <div id="txtUtilisateur" style="display:none;" href="husager" > -->
 			<div class ="header">
 				<p id="txtEntreprise"><b><i>Microsort<br>et<br>Limux</i></b></p> 
 			</div>
@@ -21,24 +21,30 @@
 			<div class="center">
 				<center><button type="button" name="boutonAdmin" id="btnAdmin" onclick="click_user();"><b><i>ADMINISTRATEUR</i></b></button></center> 
 				<center><button type="button" name="boutonCapt" id="btnCapt" onclick="click_user()";><b><i>CAPITAINE</i></b></button></center> 
-				<center><button type="button" name="boutonJoueur" ><b><i>JOUEUR</i></b></button></center> 
-				<center><button type="button" name="boutonVisit" ><b><i>VISITEUR</i></b></button></center>
+				
+				<!-- <center><button type="button" name="boutonJoueur" ><b><i>JOUEUR</i></b></button></center> 
+				<center><button type="button" name="boutonVisit" ><b><i>VISITEUR</i></b></button></center> -->
 			</div>
 		</div>
 		
 		
 		<!-- AUTHENTIFICATION -->
 		<div id="authent" style="display:none;" href="hauthent">
-			<div class ="header1">
-				<center><p id="txtAuthent"><b>AUTHENTIFICATION</b></p> </center>
-			</div>
-			
-			<center><p><b>Utilisateur</p> </center>				
+			<form id="form_authent" name="form_authent" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php" method="post">
+				<div class ="header1">
+					<center><p id="txtAuthent"><b>AUTHENTIFICATION</b></p> </center>
+				</div>
+				<input type="hidden" name="action" value="validateLogin">
+				<input type="hidden" name="ID_Personne" value="">
+				
+				<center><p><b>Utilisateur</p> </center>				
 				<input type="text" id="utilisateur" value="" placeholder="Entrer un code d'utilisateur"> </br>
-			<center><p><b>Mot de passe</p> </center>
+				<center><p><b>Mot de passe</p> </center>
 				<input type="password" id="psswd" value="" placeholder="Entrer un mot de passe"> </br></br>
-			<button type="button" name="boutonConnect" id="btnConnect" onclick="click_authent();"><b><i>Se connecter</i></b></button> 
-			<p id="ici"></p> 
+				
+				<button type="button" name="boutonConnect" id="btnConnect" onclick="click_authent();"><b><i>Se connecter</i></b></button> 
+				<p id="ici"></p> 
+			</form>
 		</div>
 		
 		
@@ -46,7 +52,7 @@
 		<div id="ligue"  style="display:none;" href="hligue"  >
 		
 		<!--div id="ligue"-->    
-			<form id="form_ligue" name="form_ligue" action="http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php" method="post">
+			<form id="form_ligue" name="form_ligue" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post">
 				<div class ="header2">
 					<center><p id="txtLigue"><b>CREATION DE LIGUE</b></p> </center>
 				</div>
@@ -127,9 +133,9 @@
 	
 	
 		<!-- INSCRIPTION -->
-		<!--div id="inscription"  style="display:none;" href="hinscription" -->
+		<div id="inscription"  style="display:none;" href="hinscription">
 																		
-		<div id="inscription" >
+		<!-- <div id="inscription" > -->
 			<form id="form_inscription" name="form_inscription" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class="gauche">					
 					<div class ="header4">
