@@ -2,7 +2,7 @@
 		/* Panneau utilisateur */		
 			div.header {
 				border: 1px solid;
-				border-radius: 15px;
+				border-radius: .3em;
 				margin-top: 2px;
 				margin-bottom: 25px;
 				margin-left: 2px;
@@ -10,30 +10,35 @@
 			}
 		
 			#txtEntreprise {
-				font-family: Arial;
-				font-size: 	12pt;
-				color: red;     /* #0B6121; */
-				margin-left: 73px;
-				margin-right: 73px;
+				font-family: Heveltica;
+				font-size: 	25pt;
+				color: red; 
+				background-color: #D4D982;
+				border-radius: .3em;
+				margin-left: 8px;
+				margin-right: 8px;
+				margin-top: 8px;
+				margin-bottom: 8px;
 				}
 		
 			#txtUtilisateur {
-				background-color: #DFE1E7;
-				line-height: 50px;
+				background-color: #CCFF33;
+				height: 250px;
+			/*	line-height: 50px; */
 				width: 225px;
 				border-left: 3px solid #101907;
 				border-right: 3px solid #101907;
 				border-bottom: 3px solid #101907;
 				border-top: 3px solid #101907;
-				border-radius: 15px;
+				border-radius: .3em; 
 				margin-top: 50px;
 				margin-left: 500px;
 			}
 	
 			#txtUtilisateur button {
-				margin-left: 45px;
-				background-color: #e6ffcc;
-				color: #000000  /*  #0B6121;  */
+				margin-left: 15px;
+				background-color: #FFFFFF;
+				color: #265700; 
 				text-align: center;
 				}
 				
