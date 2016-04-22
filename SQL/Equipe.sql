@@ -1,7 +1,7 @@
 create table Equipe(
 	ID_Equipe int NOT NULL AUTO_INCREMENT,
 	ID_Ligue int NOT NULL,
-	ID_SousLigue int NULL,
+	ID_SousLigue int NOT NULL (?),
 	Nom_Equipe varchar(40) NOT NULL,
 	UNIQUE(ID_Equipe),
 	PRIMARY KEY(ID_Equipe),
