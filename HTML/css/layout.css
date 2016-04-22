@@ -1,31 +1,42 @@
 	
-		/* Panneau utilisateur */		
+		/* Panneau utilisateur */	
+			/* #form_utilisateur {
+				background-image:url(flamesnation_ca.jpg);
+				background-size: 600px 600px;
+				background-repeat: no-repeat;
+			} */
+
+
+
+
+
+
+		
 			div.header {
 				border: 1px solid;
 				border-radius: .3em;
 				margin-top: 2px;
-				margin-bottom: 25px;
+				margin-bottom: 40px;
 				margin-left: 2px;
 				margin-right: 2px;
 			}
 		
-			#txtEntreprise {
-				font-family: Heveltica;
-				font-size: 	25pt;
-				color: red; 
-				background-color: #D4D982;
-				border-radius: .3em;
-				margin-left: 8px;
-				margin-right: 8px;
-				margin-top: 8px;
-				margin-bottom: 8px;
-				}
-		
+			#txtEntreprise{
+				margin:auto;
+				color:red;
+				font-size:40px;
+				height: 145px;
+				background: -webkit-linear-gradient(left, yellow, green, orange, white, green); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(left,yellow, green, orange, white, green); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(left, yellow, green, orange, white, green); /* For Fx 3.6 to 15 */
+				background: linear-gradient(to right yellow, green, orange, white, green); /* Standard syntax (must be last) */
+			}
+		 
 			#txtUtilisateur {
-				background-color: #CCFF33;
-				height: 250px;
-			/*	line-height: 50px; */
-				width: 225px;
+				background-color: #DDF78F;
+				height: 300px;
+				width: 400px;
+				border-color: green;
 				border-left: 3px solid #101907;
 				border-right: 3px solid #101907;
 				border-bottom: 3px solid #101907;
@@ -58,14 +69,17 @@
 			}
 		
 			#authent {
-				background-color: #DFE1E7;
+				background: -webkit-linear-gradient(top, white, yellow, green); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(top, white, yellow, green); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(top, white, yellow, green); /* For Fx 3.6 to 15 */
+				background: linear-gradient(to top white, yellow, green); /* Standard syntax (must be last) */
 				line-height: 35px;
 				width: 225px;
 				border-left: 3px solid #101907;
 				border-right: 3px solid #101907;
 				border-bottom: 3px solid #101907;
 				border-top: 3px solid #101907;
-				border-radius: 15px;
+				border-radius: .3em;
 				margin-left: 500px;
 			}
 			
@@ -97,12 +111,16 @@
 			}
 			
 			#ligue form {
+				background: -webkit-linear-gradient(top, white, #ff6600, white, #ffc299); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(top, white, ##ff6600, white, #ffc299); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(top, white, ##ff6600, white,  #ffc299); /* For Fx 3.6 to 15 */
+				background: linear-gradient(to top white, ##ff6600, white,  #ffc299); /* Standard syntax (must be last) */
 				margin: 0 auto;
 				width: 500px;
 				hight: 300px;
 				padding: 1em;
 				border: 2px solid #CCC;
-				border-radius: 1em;
+				border-radius: .3em;
 			}
 			
 			#ligue form div + div {
@@ -125,8 +143,8 @@
 			
 			#ligue button {
 				margin-left: 100px;
-				background-color: #BFFA51;
-				color: #0B6121;
+				background-color: #ffb84d;
+				color: #001a33;
 				text-align: center;
 			}
 			
@@ -151,12 +169,16 @@
 			}
 		
 			#equipe form {
+				background: -webkit-linear-gradient(top, white, #c6ff1a, #4d6600); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(top, white, #c6ff1a, #4d6600); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(top, white, #c6ff1a, #4d6600); /* For Fx 3.6 to 15 */
+				background: linear-gradient(to top white, #c6ff1a, #4d6600); /* Standard syntax (must be last) */
 				margin: 0 auto;
 				width: 560px;
 				hight: 300px;
 				padding: 1em;
 				border: 2px solid #CCC;
-				border-radius: 1em;
+				border-radius: .3em;
 			}
 		
 			#equipe form div + div {
@@ -214,12 +236,16 @@
 			}
 			
 			#inscription form {
+				background: -webkit-linear-gradient(top, yellow, white, yellowgreen); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(top,yellow, white, yellowgreen); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(top, yellow, white, yellowgreen); /* For Fx 3.6 to 15 */
+				background: linear-gradient(to top yellow, white, yellowgreen); /* Standard syntax (must be last) */
 				margin: 0 auto;
 				width: 740px;
-				height: 640px;     /* 470px; a remettre avec nouvelle version des tables */
+				height: 480px;
 				padding: 1em;
 				border: 2px solid #CCC;
-				border-radius: 1em;
+				border-radius: .3em;
 			}
 			
 			#inscription form div + div {
@@ -241,7 +267,7 @@
 			}
 			
 			input:focus {   /* rehausser les champs actifs */
-				border-color: #000;
+				border-color: #f62109;
 			}
 			
 			.button {
@@ -265,7 +291,8 @@
 				width: 250px; 
 				height: 350px;
 				border: 2px solid #999;
-				border-radius: .3em;			
+				border-radius: .3em;
+				background: #fee9e6;				
 			}
 			
 			#table_joueur {
