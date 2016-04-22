@@ -6,8 +6,8 @@
 			
 			function click_authent() {
 				/* saisir les entrees de authentification */
-				var password = $("#psswd").val();
-				var usr = $("#utilisateur").val();
+				var password = $("#Password").val();
+				var usr = $("#Username").val();
 
 				/*********************************************
 				if ("user" != usr || password != "password") {
@@ -20,7 +20,7 @@
 				
 				if (usr == "" || password == "") {
 					alert("Les champs d'authentification sont requis");
-					document.form_authent.utilisateur.focus(); 
+					document.form_authent.Username.focus(); 
 					return false;
 				}
 				
@@ -53,16 +53,16 @@
 			/* (pour test) ceci devrait implanter une fois idGestionnaire est créé */
 				document.form_ligue.idGestionnaire.value = 4;
 
-			
 				var nom_ligue = document.getElementById("nomLigue").value;
-				var category_ligue = document.getElementById("category_name").value;
+				
+				var category_ligue = document.getElementById("categorie").value;
 				var category_output = document.getElementById("output_cat_eq");
 				category_output.value = category_ligue;
 				
 				/* saisir les entrees de ligue */
 				var nom_ligue = $("#nomLigue").val();
-				var nom_sligue = $("#nomsousLigue").val();
-				var cat_ligue = $("#category_name").val();
+				var nom_sligue = $("#Nom_SousLigue").val();
+				var cat_ligue = $("#categorie").val();
 					
 				if (nom_ligue == "" || nom_sligue == "" || cat_ligue == "" ) {
 					alert("Les champs de ligue sont requis");
@@ -97,7 +97,9 @@
 			function click_equipe() {
 			/* (pour test) ceci devrait implanter une fois idLigue est transféré */
 				document.form_equipe.idLigue.value = 30;
-
+				document.form_equipe.idSousLigue.value = 5;
+				
+				
 			
 				/* afficher le nom d'equipe au prochain panneau */
 				var nom_equipe = document.getElementById("nomEquipe").value;
@@ -122,13 +124,10 @@
 					data:$('#form_equipe').serialize(),
 					datatype:'json',
 					success:function(reponse){
-											
-						
 						var obj = JSON.parse(reponse);
 						if (obj.hasOurProperty("Status"))
 							if (obj.hasOurProperty("Id"))
 								form.$(ID_Equipe).value = obj["id"];
-								
 
 						alert(JSON.stringify(reponse));
 					}
@@ -146,11 +145,11 @@
 			var joueur =[];
 			function click_inscription() {
 			/* (pour test) ceci devrait implanter une fois idLigue est transféré */
-				document.form_inscription.nomUsager.value = "user";
+			/* 	document.form_inscription.nomUsager.value = "user";
 				document.form_inscription.motDePasse.value = "password";
 				document.form_inscription.capitaine.value = true;
 				document.form_inscription.pointeur.value = true;
-				document.form_inscription.gestionnaire.value = true;
+				document.form_inscription.gestionnaire.value = true; */
 				
 				/* saisir les entrees d'inscription */
 				var nom_joueur = $("#nom").val();
