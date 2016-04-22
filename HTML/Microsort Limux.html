@@ -14,8 +14,11 @@
 		<div id="txtUtilisateur">
 		
 		<!-- <div id="txtUtilisateur" style="display:none;" href="husager" > -->
+		
+		<form id="form_utilisateur" name="form_utilisateur">
+		
 			<div class ="header">
-				<p id="txtEntreprise"><b><i>Microsort<br>et<br>Limux</i></b></p> 
+				<p id="txtEntreprise" style="text-align:center;"><b><i>Microsort<br>et<br>Limux</i></b></p> 
 			</div>
 			
 			<div class="center">
@@ -25,6 +28,11 @@
 				<!-- <center><button type="button" name="boutonJoueur" ><b><i>JOUEUR</i></b></button></center> 
 				<center><button type="button" name="boutonVisit" ><b><i>VISITEUR</i></b></button></center> -->
 			</div>
+			
+		</form>	
+			
+			
+			
 		</div>
 		
 		
@@ -35,12 +43,11 @@
 					<center><p id="txtAuthent"><b>AUTHENTIFICATION</b></p> </center>
 				</div>
 				<input type="hidden" name="action" value="validateLogin">
-				<input type="hidden" name="ID_Personne" value="">
 				
 				<center><p><b>Utilisateur</p> </center>				
-				<input type="text" id="utilisateur" value="" placeholder="Entrer un code d'utilisateur"> </br>
+				<input type="text" id="Username" name="Username" value="" placeholder="Entrer un code d'utilisateur"> </br>
 				<center><p><b>Mot de passe</p> </center>
-				<input type="password" id="psswd" value="" placeholder="Entrer un mot de passe"> </br></br>
+				<input type="password" id="Password" name="Password" value="" placeholder="Entrer un mot de passe"> </br></br>
 				
 				<button type="button" name="boutonConnect" id="btnConnect" onclick="click_authent();"><b><i>Se connecter</i></b></button> 
 				<p id="ici"></p> 
@@ -51,27 +58,30 @@
 		<!-- LIGUE -->
 		<div id="ligue"  style="display:none;" href="hligue"  >
 		
-		<!--div id="ligue"-->    
+		<!-- <div id="ligue"> -->   
 			<form id="form_ligue" name="form_ligue" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post">
 				<div class ="header2">
 					<center><p id="txtLigue"><b>CREATION DE LIGUE</b></p> </center>
 				</div>
 				<input type="hidden" name="action" value="newLigue">
+				<input type="hidden" name="ID_Ligue" value="">
 				<input type="hidden" name="idGestionnaire" value="">
+				<!-- <input type="hidden" name="ID_Personne" value=""> -->
 				<div>
-					<label for="nom_ligue">Nom de ligue : </label>
-					<input id="nomLigue" name="nomLigue" type="text" value="" placeholder="Entrer un nom de ligue"
-					 />
+					<label for="nomLigue">Nom de ligue : </label>
+					<input id="nomLigue" name="nomLigue" type="text" value="" placeholder="Entrer un nom de ligue"/>
+					
+					<!-- <input id="Nom_Ligue" name="Nom_Ligue" type="text" value="" placeholder="Entrer un nom de ligue"/> -->
 				</div>
 					
 				<div>
-					<label for="nom_sousligue">Nom de sous ligue : </label>
-					<input id="nomsousLigue" name="nomsousLigue" type="text" value="" placeholder="Entrer un nom de sous ligue" />				
+					<label for="Nom_SousLigue">Nom de sous ligue : </label>
+					<input id="Nom_SousLigue" name="Nom_SousLigue" type="text" value="" placeholder="Entrer un nom de sous ligue" />				
 				</div>
 				
 				<div>
 					<label for="category_name">Categorie : </label>
-					<input id="category_name" name="category_name" type="text" list="category" value="" placeholder="Selectionner une categorie"/>
+					<input id="categorie" name="categorie" type="text" list="category" value="" placeholder="Selectionner une categorie"/>
 					<datalist id="category">
 						<option value="Catégorie A">
 						<option value="Catégorie B">
@@ -96,7 +106,7 @@
 		<!-- EQUIPE -->
 		<div id="equipe" style="display:none;" href="hequipe" >
 		
-		<!--div id="equipe"-->
+		<!-- <div id="equipe"> -->
 		
 			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
 				<div class ="header3">
@@ -104,6 +114,10 @@
 				</div>
 				<input type="hidden" name="action" value="newEquipe">
 				<input type="hidden" name="idLigue" value="">
+				<input type="hidden" name="idSousLigue" value="">
+				
+				<!-- <input type="hidden" name="ID_Ligue" value="">
+				<input type="hidden" name="ID_SousLigue" value=""> -->
 				<div>
 					<label for="output_cat_eq">Catégorie : </label>
 					<output id="output_cat_eq" name="nom_cat_eq" type="text" value="" />
@@ -115,7 +129,7 @@
 				</div>
 				
 				<div>
-					<label for="nom_equipe">Nom d'équipe : </label>
+					<label for="nomEquipe">Nom d'équipe : </label>    <!-- doit changer nomEquipe a Nom_Equipe apres test -->
 					<input type="text" id="nomEquipe" name="nomEquipe" placeholder="Entrer un nom d'équipe" />
 				</div>
 				
@@ -141,8 +155,8 @@
 					<div class ="header4">
 						<center><p id="txtEnregistrement"><b>INSCRIPTION DE JOUEUR DANS L'EQUIPE</b></p> </center>
 					</div>
-					<input type="hidden" name="action" value="newJoueur">
-					<input type="hidden" name="ID_Joueur" value="">
+					<input type="hidden" name="action" value="newPersonne">
+					<input type="hidden" name="ID_Personne" value="">
 					<div>
 						<label for="titre_equipe">L'équipe </label> 
 						<output id="output_nom_equipe" name="titre_equipe" type="text" value="" /></br>
@@ -183,7 +197,7 @@
 					</div>
 
 				<!-- ces 5 div vont enlever avec la nouvelle version -->
-					<div>
+				<!-- 	<div>
 						<label for="nomUsager">Nom d'utilisateur :</label>
 						<input id="nomUsager" name="nomUsager" type="text" value="" placeholder="Entrer un nom d'utilisateur" /> </br>
 					</div>
@@ -207,15 +221,13 @@
 						<label for="gestionnaire">Gestionnaire :</label>
 						<input id="gestionnaire" name="gestionnaire" type="text" value="" placeholder="Entrer un oui/non" /> </br>
 					</div>
-					
+					 -->
 				<!-- ********************************************** -->
 					
 					
 					
 					<div class="button">
 						<button type="button" name="boutonEnr" id="btnEnregistrer" onclick="click_inscription();"><b><i>Enregistrer un joueur</i></b></button>
-					</div>
-					<div class="button">
 						<button type="button" name="boutonQuit" id="boutonQuit" onclick="click_quitter();"><b><i>Quitter</i></b></button>
 					</div>
 				</div>
