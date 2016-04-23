@@ -32,8 +32,8 @@ function returnFail(){
 
 function newLigue(){
     $table="Ligue";
-    $nomLigue=$_POST['nomLigue'];
-    $idGestionnaire=$_POST['idGestionnaire'];
+    $nomLigue=$_POST['Nom_Ligue'];
+    $idGestionnaire=$_POST['ID_Personne'];
     $req = "INSERT INTO $table VALUE (0, '$idGestionnaire', '$nomLigue')";
 
     createStatus(doQuery($req));
@@ -41,23 +41,24 @@ function newLigue(){
 
 function newEquipe(){
     $table="Equipe";
-    $nomEquipe=$_POST['nomEquipe'];
-    $idLigue=$_POST['idLigue'];
-    $idSousLigue=$_POST['idSousLigue'];
+    $nomEquipe=$_POST['Nom_Equipe'];
+    $idLigue=$_POST['ID_Ligue'];
+    $idSousLigue=$_POST['ID_SousLigue'];
     $req = "INSERT INTO $table VALUE (0, $idLigue, $idSousLigue, '$nomEquipe')";
 
     createStatus(doQuery($req));
 }
 
 function newPersonne(){
+
     $table="Personne";
     $nom=$_POST['nom'];
     $prenom=$_POST['prenom'];
-    $dateDeNaissance=$_POST['dateDeNaissance'];
+    $dateDeNaissance=$_POST['Date_Naissance'];
     $telephone=$_POST['telephone'];
     $courriel=$_POST['courriel'];
     $adresse=$_POST['adresse'];
-    if(($nom != "") && (prenom != "") && (dateDeNaissance != "")){
+    if(($nom != "") && ($prenom != "") && ($dateDeNaissance != "")){
         $req = "INSERT INTO $table VALUE (0, '$nom', '$prenom', '$dateDeNaissance', '$telephone', '$courriel', '$adresse')";
         createStatus(doQuery($req));
     }
@@ -70,7 +71,7 @@ function newPartie(){
     $table="Partie";
     $lieu=$_POST['lieu'];
     $duree=$_POST['duree'];
-    $date=$_POST['date'];
+    $date=$_POST['Date_Partie'];
     $equipe1=$_POST['equipe1'];
     $equipe2=$_POST['equipe2'];
     $pointage1=$_POST['pointage1'];
@@ -82,11 +83,11 @@ function newPartie(){
 
 function newAlignement(){
     $table="Alignement";
-    $joueur=$_POST['joueur'];
-    $equipe=$_POST['equipe'];
-    $saison=$_POST['saison'];
+    $joueur=$_POST['ID_Joueur'];
+    $equipe=$_POST['ID_Equipe'];
+    $saison=$_POST['ID_Saison'];
     $position=$_POST['position'];
-    $numeroChandail=$_POST['numeroChandail'];
+    $numeroChandail=$_POST['Numero_Chandail'];
     $temporaire=$_POST['temporaire'];
     if($temporaire == "")
         $temporaire="faux";
@@ -98,24 +99,24 @@ function newAlignement(){
 
 function newSaison(){
     $table="Saison";
-    $idLigue=$_POST['idLigue'];
-    $dateDebut=$_POST['dateDebut'];
-    $dateFin=$_POST['dateFin'];
-    $numeroSaison=$_POST['numeroSaison'];
+    $idLigue=$_POST['ID_Ligue'];
+    $dateDebut=$_POST['Date_Debut'];
+    $dateFin=$_POST['Date_Fin'];
+    $numeroSaison=$_POST['Numero_Saison'];
     $req = "INSERT INTO $table VALUE (0, $idLigue, '$dateDebut', '$dateFin', $numeroSaison)";
 
     createStatus(doQuery($req));
 }
 
-function newPoint(){
-    $table="Points";
-    $equipe=$_POST['equipe'];
-    $joueur=$_POST['joueur'];
-    $saison=$_POST['saison'];
-    $partie=$_POST['partie'];
-    $typePoint=$_POST['typePoint'];
-    $req = "INSERT INTO $table VALUE ($equipe, $joueur, $saison, $partie, '$typePoint')";
 
+function logNewEvent(){
+    $idBut = $_POST['idBut'];
+    $idPasse = $_POST['idPasse'];
+    $idPartie = $_POST['idPartie'];
+    $idPenalite = $_POST['idPenalite'];
+    $idLancer = $_POST['idLancer'];
+
+    $req="INSERT INTO Evenement VALUES ($idBut, $idPasse, $idPartie, $idPenalite, $idLancer)";
     createStatus(doQuery($req));
 }
 
@@ -140,9 +141,9 @@ $action=$_POST['action'];
     case "newSaison" :
        newSaison();
     break;
-/*  case "newPoint" :
-       newPoint();
-    break;*/
+    case "newEvent":
+        logNewEvent();
+    break;
 }
 
 mysqli_close($conn);
