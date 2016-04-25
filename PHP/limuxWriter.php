@@ -2,34 +2,6 @@
 header ("Access-Control-Allow-Origin : localhost");
 require_once("connexion.php");
 
-function doQuery($query){
-    global $conn;
-    $result = mysqli_query($conn, $query);
-
-    return $result;
-}
-
-function createStatus($status){
-    global $conn;
-
-    echo "{\"Status\" : " ;
-    if($status > 0)
-    {
-        echo "\"Success\"";
-        echo ", \"Id\" : \"";
-        echo  mysqli_insert_id($conn) ;
-        echo "\"";
-    }
-    else
-        echo "\"Fail\"";
-
-    echo "}";
-}
-
-function returnFail(){
-    echo "{\"Status\" : \"Fail\"}";
-}
-
 function newLigue(){
     $table="Ligue";
     $nomLigue=$_POST['Nom_Ligue'];
@@ -63,7 +35,7 @@ function newPersonne(){
         createStatus(doQuery($req));
     }
     else
-        returnFail();
+        returnFail("Les champs nom, prenom, et date de naissance doivent être non-nul");
 }
 
 

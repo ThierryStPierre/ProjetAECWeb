@@ -16,4 +16,34 @@
 
 //	mysqli_close($conn);
 
+
+
+function doQuery($query){
+    global $conn;
+    $result = mysqli_query($conn, $query);
+
+    return $result;
+}
+
+function createStatus($status){
+    global $conn;
+
+    echo "{\"Status\" : " ;
+    if($status > 0)
+    {
+        echo "\"Success\"";
+        echo ", \"Id\" : \"";
+        echo  mysqli_insert_id($conn) ;
+        echo "\"";
+    }
+    else
+        echo "\"Fail\"";
+
+    echo "}";
+}
+
+function returnFail(){
+    echo "{\"Status\" : \"Fail\"}";
+}
+
 ?>
