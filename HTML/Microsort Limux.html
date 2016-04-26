@@ -13,9 +13,10 @@
 		<!-- UTILTISATEURS -->
 		<div id="txtUtilisateur">
 		
-		<!-- <div id="txtUtilisateur" style="display:none;" href="husager" > -->
+	<!-- <div id="txtUtilisateur" style="display:none;" href="husager" > -->
 		
 		<form id="form_utilisateur" name="form_utilisateur">
+			<img id="image" src="css/empty_hockey_rink.jpg" alt="">
 		
 			<div class ="header">
 				<p id="txtEntreprise" style="text-align:center;"><b><i>Microsort<br>et<br>Limux</i></b></p> 
@@ -38,16 +39,18 @@
 		
 		<!-- AUTHENTIFICATION -->
 		<div id="authent" style="display:none;" href="hauthent">
-			<form id="form_authent" name="form_authent" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php" method="post">
+			<form id="form_authent" name="form_authent" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php" method="GET">
+				<img id="image1" src="css/stadium-lights-at-night.jpg" alt="">
+	
 				<div class ="header1">
 					<center><p id="txtAuthent"><b>AUTHENTIFICATION</b></p> </center>
 				</div>
 				<input type="hidden" name="action" value="validateLogin">
 				
 				<center><p><b>Utilisateur</p> </center>				
-				<input type="text" id="Username" name="Username" value="" placeholder="Entrer un code d'utilisateur"> </br>
+				<input type="text" id="userName" name="userName" value="" placeholder="Entrer un code d'utilisateur"> </br>
 				<center><p><b>Mot de passe</p> </center>
-				<input type="password" id="Password" name="Password" value="" placeholder="Entrer un mot de passe"> </br></br>
+				<input type="password" id="passWord" name="passWord" value="" placeholder="Entrer un mot de passe"> </br></br>
 				
 				<button type="button" name="boutonConnect" id="btnConnect" onclick="click_authent();"><b><i>Se connecter</i></b></button> 
 				<p id="ici"></p> 
@@ -60,6 +63,8 @@
 		
 		<!-- <div id="ligue"> -->   
 			<form id="form_ligue" name="form_ligue" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post">
+				<img id="image2" src="css/hockey_pool.jpg" alt="">
+
 				<div class ="header2">
 					<center><p id="txtLigue"><b>CREATION DE LIGUE</b></p> </center>
 				</div>
@@ -109,6 +114,8 @@
 		<!-- <div id="equipe"> -->
 		
 			<form id="form_equipe" name="form_equipe" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
+				<img id="image3" src="css/hockey_pool_2.jpg" alt="">
+
 				<div class ="header3">
 					<center><p id="txtEquipe"><b>CREATION D'EQUIPE</b></p> </center>
 				</div>
@@ -151,6 +158,8 @@
 																		
 		<!-- <div id="inscription" > -->
 			<form id="form_inscription" name="form_inscription" action="http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php" method="post" >
+				<img id="image4" src="css/timthumb.jpg" alt="">
+				
 				<div class="gauche">					
 					<div class ="header4">
 						<center><p id="txtEnregistrement"><b>INSCRIPTION DE JOUEUR DANS L'EQUIPE</b></p> </center>
