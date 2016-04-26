@@ -1,17 +1,17 @@
 	
 		/* Panneau utilisateur */	
-			/* #form_utilisateur {
-				background-image:url(flamesnation_ca.jpg);
-				background-size: 600px 600px;
-				background-repeat: no-repeat;
-			} */
+			#image {
+				z-index: -1;  /* placer l'image en arriere plan */
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				right: 0; 
+				bottom: 0; 
+				margin: auto; 
+				min-width: 100%;
+				min-height: 150%;
+			} 
 
-
-
-
-
-
-		
 			div.header {
 				border: 1px solid;
 				border-radius: .3em;
@@ -22,6 +22,7 @@
 			}
 		
 			#txtEntreprise{
+				z-index: 1;  /* placer le texte en avant plan */
 				margin:auto;
 				color:red;
 				font-size:40px;
@@ -55,7 +56,20 @@
 				
 				
 		/* Panneau authentification */	
+			#image1 {
+				z-index: -1;  /* placer l'image en arriere plan */
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				right: 0; 
+				bottom: 0; 
+				margin: auto; 
+				min-width: 100%;
+				min-height: 150%;
+			} 
+		
 			#txtAuthent {
+				z-index: 1; 
 				font-family: Arial;
 				font-size: 	12pt;
 				color: #0B6121;
@@ -97,7 +111,20 @@
 			}
 
 		/* Panneau ligue */	
+			#image2 {
+				z-index: -1;  /* placer l'image en arriere plan */
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				right: 0; 
+				bottom: 0; 
+				margin: auto; 
+				min-width: 100%;
+				min-height: 100%;
+			}
+		
 			#txtLigue {
+				z-index: 1;
 				font-family: Arial;
 				font-size: 	12pt;
 				color: #0B6121;
@@ -153,9 +180,21 @@
 			}
 		
 		
-		/* Panneau equipe */	
+		/* Panneau equipe */
+			#image3 {
+				z-index: -1;  /* placer l'image en arriere plan */
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				right: 0; 
+				bottom: 0; 
+				margin: auto; 
+				min-width: 100%;
+				min-height: 100%;
+			}
 		
 			#txtEquipe {
+				z-index: 1;
 				font-family: Arial;
 				font-size: 	12pt;
 				color: #0B6121;
@@ -212,10 +251,21 @@
 			}
 		
 		
-		
 		/* Panneau inscription joueur */
+			#image4 {
+				z-index: -1;  /* placer l'image en arriere plan */
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				right: 0; 
+				bottom: 0; 
+				margin: auto; 
+				min-width: 100%;
+				min-height: 150%;
+			}
 		
 			#txtEnregistrement {
+				z-index: 1;
 				font-family: Arial;
 				font-size: 	14pt;
 				color: #0B6121;
