@@ -27,6 +27,7 @@ function doQuery($query){
 
 function createStatus($status){
     global $conn;
+    $etat = false;
 
     echo "{\"Status\" : " ;
     if($status > 0)
@@ -35,11 +36,13 @@ function createStatus($status){
         echo ", \"Id\" : \"";
         echo  mysqli_insert_id($conn) ;
         echo "\"";
+        $etat = true;
     }
     else
         echo "\"Fail\"";
 
     echo "}";
+    return $etat;
 }
 
 function returnFail(){
