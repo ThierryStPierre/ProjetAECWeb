@@ -1,13 +1,13 @@
-			
-			function click_user() {					
+		
+			function click_user() {			
 				$("#txtUtilisateur").hide();
 				$("#authent").show();				
 			}
 			
 			function click_authent() {
 				/* saisir les entrees de authentification */
-				var password = $("#Password").val();
-				var usr = $("#Username").val();
+				var password = $("#passWord").val();
+				var usr = $("#userName").val();
 
 				/*********************************************
 				if ("user" != usr || password != "password") {
@@ -16,36 +16,36 @@
 				}
 				$("#ici").text("L'authentification est correcte");
 				*********************************************/
-				
-				
+	
 				if (usr == "" || password == "") {
 					alert("Les champs d'authentification sont requis");
 					document.form_authent.Username.focus(); 
 					return false;
 				}
 				
-				alert($('#form_authent').serialize());
-
 				$.ajax({
-					url:'http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php',
-					type:'post',
+					url:'http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReaderG.php',
+					type:'get',
+					data:resultat='#form_authent',
 					data:$('#form_authent').serialize(),
-					datatype:'json',
+					dataType:'json',
 					success:function(reponse){ 
-		
-						var obj = JSON.parse(reponse);
-						if (obj.hasOurProperty("Status"))
-							if (obj.hasOurProperty("Id"))
-								form.$(ID_Ligue).value = obj["id"];
-								
-						alert(JSON.stringify(reponse));		
-					}
+						if (reponse.Status == "Success") {
+							alert("L'authentification est correcte");
+							$("#authent").hide();
+							$("#ligue").show();
+						}
+						else {
+							document.form_authent.userName.focus();
+							alert("L'authentification n'est pas correcte");
+						} 	
+						
+					},
+					error:function(reponse){
+						alert("Probleme issu du systeme");
+						alert(JSON.stringify(reponse));
+					} 
 				});
-
-				alert("L'authentification est correcte");
-				
-				$("#authent").hide();
-				$("#ligue").show();
 				return true;
 			}
 			
@@ -75,13 +75,13 @@
 					url:'http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php',
 					type:'post',
 					data:$('#form_ligue').serialize(),
-					datatype:'json',
+					dataType:'json',
 					success:function(reponse){ 
 		
 						var obj = JSON.parse(reponse);
 						if (obj.hasOurProperty("Status"))
 							if (obj.hasOurProperty("Id"))
-								form.$(ID_Ligue).value = obj["id"];
+								form.$(ID_Ligue).value = obj["Id"];
 					
 						alert(JSON.stringify(reponse));		
 					}
@@ -122,12 +122,12 @@
 					url:'http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php',
 					type:'post',
 					data:$('#form_equipe').serialize(),
-					datatype:'json',
+					dataType:'json',
 					success:function(reponse){
 						var obj = JSON.parse(reponse);
 						if (obj.hasOurProperty("Status"))
 							if (obj.hasOurProperty("Id"))
-								form.$(ID_Equipe).value = obj["id"];
+								form.$(ID_Equipe).value = obj["Id"];
 
 						alert(JSON.stringify(reponse));
 					}
@@ -171,7 +171,7 @@
 				var Jlenght;
 				
 				if (nom_joueur == "" || prenom_joueur == "" || ddn_joueur == "" || tel_joueur == "" || email_joueur == "" || pos_joueur == "" || chand_joueur == "") {
-					alert("Les champs d'inscription joueur sont requis");
+					alert("Les champs d'inscription de joueur sont requis");
 					return false;
 				}
 				
@@ -229,7 +229,7 @@
 						var obj = JSON.parse(reponse);
 						if (obj.hasOurProperty("Status"))
 							if (obj.hasOurProperty("Id"))
-								form.$(ID_Joueur).value = obj["id"];
+								form.$(ID_Joueur).value = obj["Id"];
 					
 					
 						alert(JSON.stringify(reponse));
@@ -262,7 +262,7 @@
 			}
 			
 			function click_quitter(){
-				window.close();
+				 $("#inscription").hide();
 			}
 			
 			function validerDate(maDate) {
