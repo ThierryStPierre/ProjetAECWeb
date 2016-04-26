@@ -6,7 +6,7 @@ function validateLogin(){
     $userName=$_POST["userName"];
     $passWord=$_POST["passWord"];
 
-    if(($userName != "") && (passWord != "")){
+    if(($userName != "") && ($passWord != "")){
         $req = "SELECT Nom, Prenom, Personne.ID_Personne FROM Personne INNER ".
                "JOIN Login ON Personne.ID_Personne=Login.ID_Personne ".
                "WHERE Login.Nom_Usager='$userName' AND Mot_De_Passe='$passWord'";
@@ -21,7 +21,7 @@ function validateLogin(){
             $rowCount=0;
             echo "\"Success\", ";
             if($ligne = mysqli_fetch_object($result)){
-                echo " \"personne\" : {\"id\" : \"$ligne->ID_Personne\",";
+                echo " \"personne\" : {\"Id\" : \"$ligne->ID_Personne\",";
                 echo " \"nom\" : \"$ligne->Nom\", \"prenom\" : \"$ligne->Prenom\"}";
                 $req2 = "SELECT * FROM Competence WHERE ID_Personne=" . $ligne->ID_Personne;
 
@@ -32,7 +32,7 @@ function validateLogin(){
                     if($row2 > 0){
                         echo ", \"competence\" : [";
                         while($ligne2=mysqli_fetch_object($result2)){
-                            echo "{\"id\" : \"$ligne2->ID_Personne\", \"competenceValue\"".
+                            echo "{\"Id\" : \"$ligne2->ID_Personne\", \"competenceValue\"".
                                  " : \"$ligne2->Competence\", \"ligue\" : \"$ligne2->ID_Ligue\",".
                                  " \"sous-ligue\" : \"$ligne2->ID_SousLigue\", \"equipe\" : \"$ligne2->ID_Equipe\"}";
                             if(--$row2 > 0 ) echo ",";
@@ -76,16 +76,21 @@ function getJoueurLigue(){
 }
 
 function getAlignement(){
-    $whereStr = "";
+    $req = "";
     $idEquipe = $_POST['idEquipe'];
 
-    if(is_numeric($idEquipe)){
+    if($idEquipe == "")
+        $req = "SELECT DISTINCT Personne.ID_Personne, Personne.Nom, Personne.Prenom,".
+        "Alignement.Numero_Chandail from Personne, Alignement";
+    else if(is_numeric($idEquipe))
         $req = "SELECT Personne.ID_Personne, Personne.Nom, Personne.Prenom,".
         " Alignement.ID_Saison, Alignement.Numero_Chandail from Personne,".
         " Alignement inner join Saison on Saison.ID_Saison = Alignement.ID_Saison".
-        " where Saison.Date_Fin > now() and Alignement.ID_Joueur=".
+//        " where Saison.Date_Fin > now() and Alignement.ID_Joueur=".
+        " where Alignement.ID_Joueur=".
         "Personne.ID_Personne and ID_Equipe=$idEquipe";
 
+    if($req != ""){
         $result = doQuery($req);
 
         $row = mysqli_num_rows($result);
@@ -214,16 +219,18 @@ function getListeGestionnaire(){
 function getJoueurStat(){
     $saison="";
     $idJoueur=$_GET['ID_Joueur'];
+    $idEquipe=$_GET['ID_Equipe'];
     $idSaison=$_GET['ID_Saison'];
     
     if($idJoueur != ""){
-        if($idSaison != "")
+        if(($idSaison != "") && ($idEquipe != ""))
             $req = "SELECT But, Passe, Penalite, But_Tir_Barrage from Stat_Joueur".
-                   "WHERE ID_Joueur=$idEquipe AND ID_Saison = $idSaison";
+                   "WHERE ID_Joueur=$idJoueur AND ID_Saison = $idSaison";
         else
-            $req = "SELECT But, Passe, Penalite, But_Tir_Barrage from Stat_Joueur".
+            $req = "SELECT But, Passe, Penalite, But_Tir_Barrage, Saison.Numero_Saison from Stat_Joueur".
                    "INNER JOIN Saison on Stats_Joueur.ID_Saison=Saison.ID_Saison".
-                   "WHERE ID_Joueur=$idEquipe ORDER BY Saison.Numero_Saison ASC";
+                   "INNER JOIN Alignement on StatJoueur.ID_Personne=Alignement.ID_Personne".
+                   "WHERE ID_Joueur=$idjoueur GROUP BY ORDER BY Saison.Numero_Saison ASC";
         $result = doQuery($req);
 
         $row = mysqli_num_rows($result);
@@ -240,7 +247,8 @@ function getJoueurStat(){
                 echo "[";
                 while($ligne= mysqli_fetch_object($result)){
                     echo "{\"but\" : \"$ligne->But\", \"passe\" : \"$ligne->Passe\",".
-                         "\"tir\" : \"$ligne->But_Tir_Barrage\", \"penalite\" : \"$ligne->Penalite\"}";
+                         "\"tirBarrage\" : \"$ligne->But_Tir_Barrage\", \"penalite\"".
+                         " : \"$ligne->Penalite\", \"saison\" : \"$ligne->Numero_Saison\"}";
                     if(--$row>0)
                         echo ",";
                 }
@@ -279,7 +287,7 @@ function getEquipeStat(){
             echo "\"statEquipe\" : ";
             if($idSaison != ""){
                 $ligne = mysqli_fetch_object($result);
-                echo "{\"partie\" : \"$ligne->Nombre_PartieBut\", \"victoire\" :".
+                echo "{\"partie\" : \"$ligne->Nombre_Partie\", \"victoire\" :".
                      " \"$ligne->Victoire\", \"defaite\" : \"$ligne->Defaite\",".
                      " \"butPour\" : \"$ligne->But_Pour\", \"butContre\" :", 
                      " \"$ligne->But_Contre\", \"penalite\" : \"$ligne->Penalite\"}";
@@ -290,7 +298,8 @@ function getEquipeStat(){
                 echo "{\"partie\" : \"$ligne->Nombre_Partie\", \"victoire\" :".
                      " \"$ligne->Victoire\", \"defaite\" : \"$ligne->Defaite\",".
                      " \"butPour\" : \"$ligne->But_Pour\", \"butContre\" :", 
-                     " \"$ligne->But_Contre\", \"penalite\" : \"$ligne->Penalite\"}";
+                     " \"$ligne->But_Contre\", \"penalite\" : \"$ligne->Penalite\",".
+                     " \"saison\" : \"$ligne-­>Saison.Numero_Saison\"}";
                     if(--$row>0)
                         echo ",";
                 }
@@ -334,6 +343,9 @@ switch ($action){
     break;
     case "statEquipe":
         getEquipeStat();
+    break;
+    default :
+        returnFail("Commande $action n");
     break;
 }
 
