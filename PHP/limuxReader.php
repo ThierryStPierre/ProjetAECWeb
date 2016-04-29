@@ -1,5 +1,6 @@
 <?php
-header ("Access-Control-Allow-Origin : localhost");
+header ("Access-Control-Allow-Origin : http://localhost");
+//header ("Access-Control-Allow-Origin : none");
 require_once("connexion.php");
 
 function validateLogin(){
@@ -16,7 +17,7 @@ function validateLogin(){
         $row = mysqli_num_rows($result);
         echo "{\"Status\" : " ;
         if($row <= 0)
-            echo "Fail";
+            echo "\"Fail\"";
         else{
             $rowCount=0;
             echo "\"Success\", ";
@@ -44,8 +45,8 @@ function validateLogin(){
             }
 
         }
+        mysql_free_result($result);
     }
-    mysql_free_result($result);
     echo "}";
 }
 
@@ -109,7 +110,7 @@ function getAlignement(){
             echo "\"Fail\"";
         echo "}";
     }
-    else returnFail();
+    else returnFail("idEquipe doit être numérique!");
 }
 
 function getListEquipe(){
@@ -133,11 +134,11 @@ function getListEquipe(){
             if(--$row > 0) echo ",";
         }
         echo "]";
+        mysql_free_result($result);
     }
     else
         echo "\"Fail\"";
     echo "}";
-    mysql_free_result($result);
 }
 
 function getListeLigue(){
@@ -159,11 +160,11 @@ function getListeLigue(){
             if(--$row > 0) echo ",";
         }
         echo "]";
+        mysql_free_result($result);
     }
     else
         echo "\"Fail\"";
     echo "}";
-    mysql_free_result($result);
 }
 
 function getListeLigueByMarqueur(){
@@ -218,9 +219,9 @@ function getListeGestionnaire(){
 
 function getJoueurStat(){
     $saison="";
-    $idJoueur=$_GET['ID_Joueur'];
-    $idEquipe=$_GET['ID_Equipe'];
-    $idSaison=$_GET['ID_Saison'];
+    $idJoueur=$_POST['ID_Joueur'];
+    $idEquipe=$_POST['ID_Equipe'];
+    $idSaison=$_POST['ID_Saison'];
     
     if($idJoueur != ""){
         if(($idSaison != "") && ($idEquipe != ""))
@@ -265,8 +266,8 @@ function getJoueurStat(){
 
 function getEquipeStat(){
     $saison="";
-    $idEquipe=$_GET['ID_Equipe'];
-    $idSaison=$_GET['ID_Saison'];
+    $idEquipe=$_POST['ID_Equipe'];
+    $idSaison=$_POST['ID_Saison'];
 
     if($idEquipe != ""){
         if($idSaison != ""){
@@ -308,10 +309,33 @@ function getEquipeStat(){
             echo "}"; 
         }
         else
-            returnFail();
+            returnFail("fail on EquipeStat");
     }
     else
-        returnFail();
+        returnFail("fail on EquipeStat (2)");
+}
+
+function getEquipeInfo(){
+    $idEquipe=$_POST['ID_Equipe'];
+
+    if(($idEquipe != "") && is_numeric($idEquipe)){
+        $req = "SELECT * FROM Equipe WHERE ID_Equipe = $idEquipe";
+        $result = doQuery($req);
+
+        $row = mysqli_num_rows($result);
+        if($row > 0)
+        {
+            $ligne = mysqli_fetch_object($result);
+            echo "{\"Status\" : \"Success\", ";
+            echo "\"Equipe\" : {\"Id\" : \"$ligne->ID_Equipe\", ";
+            echo "\"ligue\" : \"$ligne->ID_Ligue\",";
+            echo "\"sousLigue\" : \"$ligne->ID_SousLigue\",";
+            echo "\"nom\" : \"$ligne->Nom_Equipe\"}";
+            echo "}"; 
+        }
+    }
+    else
+        returnFail("ID_Equipe doit être numérique");
 }
 
 //Le controleur
@@ -340,6 +364,9 @@ switch ($action){
     break;
     case "statJoueur":
         getJoueurStat();
+    break;
+    case "getEquipeInfo":
+        getEquipeInfo();
     break;
     case "statEquipe":
         getEquipeStat();

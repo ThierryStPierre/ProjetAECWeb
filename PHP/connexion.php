@@ -45,8 +45,8 @@ function createStatus($status){
     return $etat;
 }
 
-function returnFail(){
-    echo "{\"Status\" : \"Fail\"}";
+function returnFail($msg){
+    echo "{\"Status\" : \"Fail\", \"errMsg\" : \"$msg\"}";
 }
 
 ?>
