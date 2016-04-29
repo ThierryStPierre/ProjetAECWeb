@@ -3,7 +3,7 @@ create table Competence(
 	ID_Ligue int NOT NULL,
 	ID_SousLigue int,
 	ID_Equipe int,
-	ID_Saison int NOT NULL,
+	ID_Saison int,
 	Competence enum ('', 'Gestionnaire', 'Capitaine', 'Marqueur'),
 	FOREIGN KEY(ID_Personne) REFERENCES Personne(ID_Personne),
 	FOREIGN KEY(ID_Ligue) REFERENCES Ligue(ID_Ligue),
