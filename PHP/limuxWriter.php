@@ -175,9 +175,10 @@ function newSaison(){
 
 
 function logNewEvent(){
-    $value = true;
+    $valid = true;
     $idBut = $_POST['idBut'];
-    $idPasse = $_POST['idPasse'];
+    $idPasse1 = $_POST['idPasse1'];
+    $idPasse2 = $_POST['idPasse2'];
     $idPartie = $_POST['idPartie'];
     $idPenalite = $_POST['idPenalite'];
     $idLancer = $_POST['idLancer'];
@@ -187,28 +188,32 @@ function logNewEvent(){
             returnFail("Au moins une autre champ parmi idBut, idPenalite et idLancer doit être présent.");
         else{
             if(($idBut != "") && !is_numeric($idBut)){
-                $value = false;
+                $valid = false;
                 returnFail("Le champs idBut doit être numérique");
             }
-            if(($idPasse != "") && !is_numeric($idPasse)){
-                $value = false;
-                returnFail("Le champs idPasse doit être numérique");
+            if(($idPasse2 != "") && !is_numeric($idPasse2)){
+                $valid = false;
+                returnFail("Le champs idPasse2 doit être numérique");
+            }
+            if(($idPasse1 != "") && !is_numeric($idPasse1)){
+                $valid = false;
+                returnFail("Le champs idPasse1 doit être numérique");
             }
             if(($idPartie != "") && !is_numeric($idPartie)){
-                $value = false;
+                $valid = false;
                 returnFail("Le champs idPartie doit être numérique");
             }
             if(($idPenalite != "") && !is_numeric($idPenalite)){
-                $value = false;
+                $valid = false;
                 returnFail("Le champs idPenalite doit être numérique");
             }
             if(($idLancer != "") && !is_numeric($idLancer)){
-                $value = false;
+                $valid = false;
                 returnFail("Le champs idLancer doit être numérique");
             }
 
-            if($value){
-                $req="INSERT INTO Evenement VALUES ($idBut, $idPasse, $idPartie, $idPenalite, $idLancer)";
+            if($valid){
+                $req="INSERT INTO Evenement VALUES ($idBut, $idPasse1, $idPasse2, $idPartie, $idPenalite, $idLancer)";
                 createStatus(doQuery($req));
             }
         }
